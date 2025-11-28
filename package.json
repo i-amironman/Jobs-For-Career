@@ -6,17 +6,14 @@
     "dev": "nodemon --exec \"next dev -p 3000\" --watch src --ext ts,tsx,js,jsx 2>&1 | tee dev.log",
     "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
     "start": "NODE_ENV=production node .next/standalone/server.js 2>&1 | tee server.log",
-    "lint": "next lint",
-    "db:push": "prisma db push",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^6.11.1",
+    "mongodb": "^6.8.0",
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.0.1",
     "z-ai-web-dev-sdk": "^0.0.10",
     "zod": "^4.0.2"
   },
