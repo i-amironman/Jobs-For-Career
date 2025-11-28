@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectToDatabase, getDatabaseCollections } from '@/lib/db'
-import { Job, ApiResponse, PaginationParams, PaginatedResponse } from '@/lib/types'
+import { Internship, ApiResponse, PaginationParams, PaginatedResponse } from '@/lib/types'
 
+// GET /api/internships - Fetch all internships with pagination and filtering
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
@@ -12,7 +13,7 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search') || ''
     const category = searchParams.get('category') || ''
     const location = searchParams.get('location') || ''
-    const type = searchParams.get('type') || ''
+    const duration = searchParams.get('duration') || ''
     const sortBy = searchParams.get('sortBy') || 'posted'
     const sortOrder = searchParams.get('sortOrder') || 'desc'
     
@@ -38,8 +39,8 @@ export async function GET(request: NextRequest) {
       filter.location = { $regex: location, $options: 'i' }
     }
     
-    if (type) {
-      filter.type = type
+    if (duration) {
+      filter.duration = { $regex: duration, $options: 'i' }
     }
     
     // Build sort object
@@ -48,34 +49,34 @@ export async function GET(request: NextRequest) {
     
     // Count total documents (with null check)
     let total = 0
-    if (collections && collections.jobs) {
+    if (collections && collections.internships) {
       try {
-        total = await collections.jobs.countDocuments(filter)
+        total = await collections.internships.countDocuments(filter)
       } catch (error) {
         console.error('Error counting documents:', error)
         total = 0
       }
     }
     
-    // Fetch jobs with pagination (with null check)
-    let jobs = []
-    if (collections && collections.jobs) {
+    // Fetch internships with pagination (with null check)
+    let internships = []
+    if (collections && collections.internships) {
       try {
-        jobs = await collections.jobs
+        internships = await collections.internships
           .find(filter)
           .sort(sort)
           .skip((page - 1) * limit)
           .limit(limit)
           .toArray()
       } catch (error) {
-        console.error('Error fetching jobs:', error)
-        jobs = []
+        console.error('Error fetching internships:', error)
+        internships = []
       }
     }
     
     // Create pagination response
-    const response: PaginatedResponse<Job> = {
-      data: jobs,
+    const response: PaginatedResponse<Internship> = {
+      data: internships,
       pagination: {
         page,
         limit,
@@ -89,26 +90,26 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: response
-    } as ApiResponse<PaginatedResponse<Job>>)
+    } as ApiResponse<PaginatedResponse<Internship>>)
     
   } catch (error) {
-    console.error('Error fetching jobs:', error)
+    console.error('Error fetching internships:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to fetch jobs'
+      error: 'Failed to fetch internships'
     } as ApiResponse, { status: 500 })
   }
 }
 
-// POST /api/jobs - Create a new job
+// POST /api/internships - Create a new internship
 export async function POST(request: NextRequest) {
   try {
-    const jobData = await request.json()
+    const internshipData = await request.json()
     
     // Validate required fields
-    const requiredFields = ['title', 'company', 'location', 'type', 'salary', 'description', 'category']
+    const requiredFields = ['title', 'company', 'location', 'duration', 'stipend', 'description', 'category']
     for (const field of requiredFields) {
-      if (!jobData[field]) {
+      if (!internshipData[field]) {
         return NextResponse.json({
           success: false,
           error: `Missing required field: ${field}`
@@ -118,119 +119,119 @@ export async function POST(request: NextRequest) {
     
     const { collections } = await getDatabaseCollections()
     
-    // Create new job document
-    const newJob: Omit<Job, '_id'> = {
-      ...jobData,
+    // Create new internship document
+    const newInternship: Omit<Internship, '_id'> = {
+      ...internshipData,
       posted: new Date(),
       featured: false,
       active: true,
       views: 0,
       applications: 0,
-      requirements: jobData.requirements || [],
-      tags: jobData.tags || []
+      requirements: internshipData.requirements || [],
+      tags: internshipData.tags || []
     }
     
-    // Insert job into database
-    const result = await collections.jobs.insertOne(newJob)
+    // Insert internship into database
+    const result = await collections.internships.insertOne(newInternship)
     
-    // Return created job with ID
-    const createdJob = await collections.jobs.findOne({ _id: result.insertedId })
+    // Return created internship with ID
+    const createdInternship = await collections.internships.findOne({ _id: result.insertedId })
     
     return NextResponse.json({
       success: true,
-      data: createdJob
-    } as ApiResponse<Job>, { status: 201 })
+      data: createdInternship
+    } as ApiResponse<Internship>, { status: 201 })
     
   } catch (error) {
-    console.error('Error creating job:', error)
+    console.error('Error creating internship:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to create job'
+      error: 'Failed to create internship'
     } as ApiResponse, { status: 500 })
   }
 }
 
-// PUT /api/jobs - Update a job
+// PUT /api/internships - Update an internship
 export async function PUT(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const jobId = searchParams.get('id')
+    const internshipId = searchParams.get('id')
     
-    if (!jobId) {
+    if (!internshipId) {
       return NextResponse.json({
         success: false,
-        error: 'Job ID is required'
+        error: 'Internship ID is required'
       } as ApiResponse, { status: 400 })
     }
     
     const updateData = await request.json()
     const { collections } = await getDatabaseCollections()
     
-    // Update job in database
-    const result = await collections.jobs.updateOne(
-      { _id: jobId },
+    // Update internship in database
+    const result = await collections.internships.updateOne(
+      { _id: internshipId },
       { $set: { ...updateData, updatedAt: new Date() } }
     )
     
     if (result.matchedCount === 0) {
       return NextResponse.json({
         success: false,
-        error: 'Job not found'
+        error: 'Internship not found'
       } as ApiResponse, { status: 404 })
     }
     
-    // Return updated job
-    const updatedJob = await collections.jobs.findOne({ _id: jobId })
+    // Return updated internship
+    const updatedInternship = await collections.internships.findOne({ _id: internshipId })
     
     return NextResponse.json({
       success: true,
-      data: updatedJob
-    } as ApiResponse<Job>)
+      data: updatedInternship
+    } as ApiResponse<Internship>)
     
   } catch (error) {
-    console.error('Error updating job:', error)
+    console.error('Error updating internship:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to update job'
+      error: 'Failed to update internship'
     } as ApiResponse, { status: 500 })
   }
 }
 
-// DELETE /api/jobs - Delete a job
+// DELETE /api/internships - Delete an internship
 export async function DELETE(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const jobId = searchParams.get('id')
+    const internshipId = searchParams.get('id')
     
-    if (!jobId) {
+    if (!internshipId) {
       return NextResponse.json({
         success: false,
-        error: 'Job ID is required'
+        error: 'Internship ID is required'
       } as ApiResponse, { status: 400 })
     }
     
     const { collections } = await getDatabaseCollections()
     
-    // Delete job from database
-    const result = await collections.jobs.deleteOne({ _id: jobId })
+    // Delete internship from database
+    const result = await collections.internships.deleteOne({ _id: internshipId })
     
     if (result.deletedCount === 0) {
       return NextResponse.json({
         success: false,
-        error: 'Job not found'
+        error: 'Internship not found'
       } as ApiResponse, { status: 404 })
     }
     
     return NextResponse.json({
       success: true,
-      message: 'Job deleted successfully'
+      message: 'Internship deleted successfully'
     } as ApiResponse)
     
   } catch (error) {
-    console.error('Error deleting job:', error)
+    console.error('Error deleting internship:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to delete job'
+      error: 'Failed to delete internship'
     } as ApiResponse, { status: 500 })
   }
 }

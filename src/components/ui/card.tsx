@@ -1,6 +1,5 @@
 import React from 'react'
 
-// Ultra-lightweight card component
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
 }
@@ -8,7 +7,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 export function Card({ className = '', children, ...props }: CardProps) {
   return (
     <div
-      className={`rounded-2xl border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-all duration-200 ${className}`}
+      className={`rounded-lg border bg-card text-card-foreground shadow-sm ${className}`}
       {...props}
     >
       {children}
@@ -24,7 +23,7 @@ export function CardHeader({ className = '', children, ...props }: CardProps) {
   )
 }
 
-export function CardTitle({ className = '', children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
+export function CardTitle({ className = '', children, ...props }: CardProps) {
   return (
     <h3 className={`text-2xl font-semibold leading-none tracking-tight ${className}`} {...props}>
       {children}
@@ -32,7 +31,7 @@ export function CardTitle({ className = '', children, ...props }: React.HTMLAttr
   )
 }
 
-export function CardDescription({ className = '', children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+export function CardDescription({ className = '', children, ...props }: CardProps) {
   return (
     <p className={`text-sm text-muted-foreground ${className}`} {...props}>
       {children}

@@ -1,26 +1,21 @@
+'use client'
+
+import { ReactNode } from 'react'
 import { Header } from './header'
 import { Footer } from './footer'
 
 interface LayoutProps {
-  children: React.ReactNode
-  showHeader?: boolean
-  showFooter?: boolean
-  className?: string
+  children: ReactNode
 }
 
-export function Layout({ 
-  children, 
-  showHeader = true, 
-  showFooter = true,
-  className = '' 
-}: LayoutProps) {
+export function Layout({ children }: LayoutProps) {
   return (
-    <div className={`min-h-screen flex flex-col ${className}`}>
-      {showHeader && <Header />}
+    <div className="min-h-screen flex flex-col">
+      <Header />
       <main className="flex-1">
         {children}
       </main>
-      {showFooter && <Footer />}
+      <Footer />
     </div>
   )
 }

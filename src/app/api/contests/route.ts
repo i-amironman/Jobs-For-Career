@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectToDatabase, getDatabaseCollections } from '@/lib/db'
-import { Job, ApiResponse, PaginationParams, PaginatedResponse } from '@/lib/types'
+import { Contest, ApiResponse, PaginationParams, PaginatedResponse } from '@/lib/types'
 
+// GET /api/contests - Fetch all contests with pagination and filtering
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
@@ -11,20 +12,26 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '10')
     const search = searchParams.get('search') || ''
     const category = searchParams.get('category') || ''
-    const location = searchParams.get('location') || ''
-    const type = searchParams.get('type') || ''
-    const sortBy = searchParams.get('sortBy') || 'posted'
-    const sortOrder = searchParams.get('sortOrder') || 'desc'
+    const status = searchParams.get('status') || 'active'
+    const sortBy = searchParams.get('sortBy') || 'deadline'
+    const sortOrder = searchParams.get('sortOrder') || 'asc'
     
     const { collections } = await getDatabaseCollections()
     
     // Build query filter
-    const filter: any = { active: true }
+    const filter: any = {}
+    
+    if (status === 'active') {
+      filter.active = true
+      filter.deadline = { $gt: new Date() }
+    } else if (status === 'ended') {
+      filter.deadline = { $lte: new Date() }
+    }
     
     if (search) {
       filter.$or = [
         { title: { $regex: search, $options: 'i' } },
-        { company: { $regex: search, $options: 'i' } },
+        { organizer: { $regex: search, $options: 'i' } },
         { description: { $regex: search, $options: 'i' } },
         { tags: { $in: [new RegExp(search, 'i')] } }
       ]
@@ -34,48 +41,40 @@ export async function GET(request: NextRequest) {
       filter.category = { $regex: category, $options: 'i' }
     }
     
-    if (location) {
-      filter.location = { $regex: location, $options: 'i' }
-    }
-    
-    if (type) {
-      filter.type = type
-    }
-    
     // Build sort object
     const sort: any = {}
     sort[sortBy] = sortOrder === 'asc' ? 1 : -1
     
     // Count total documents (with null check)
     let total = 0
-    if (collections && collections.jobs) {
+    if (collections && collections.contests) {
       try {
-        total = await collections.jobs.countDocuments(filter)
+        total = await collections.contests.countDocuments(filter)
       } catch (error) {
         console.error('Error counting documents:', error)
         total = 0
       }
     }
     
-    // Fetch jobs with pagination (with null check)
-    let jobs = []
-    if (collections && collections.jobs) {
+    // Fetch contests with pagination (with null check)
+    let contests = []
+    if (collections && collections.contests) {
       try {
-        jobs = await collections.jobs
+        contests = await collections.contests
           .find(filter)
           .sort(sort)
           .skip((page - 1) * limit)
           .limit(limit)
           .toArray()
       } catch (error) {
-        console.error('Error fetching jobs:', error)
-        jobs = []
+        console.error('Error fetching contests:', error)
+        contests = []
       }
     }
     
     // Create pagination response
-    const response: PaginatedResponse<Job> = {
-      data: jobs,
+    const response: PaginatedResponse<Contest> = {
+      data: contests,
       pagination: {
         page,
         limit,
@@ -89,26 +88,26 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: response
-    } as ApiResponse<PaginatedResponse<Job>>)
+    } as ApiResponse<PaginatedResponse<Contest>>)
     
   } catch (error) {
-    console.error('Error fetching jobs:', error)
+    console.error('Error fetching contests:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to fetch jobs'
+      error: 'Failed to fetch contests'
     } as ApiResponse, { status: 500 })
   }
 }
 
-// POST /api/jobs - Create a new job
+// POST /api/contests - Create a new contest
 export async function POST(request: NextRequest) {
   try {
-    const jobData = await request.json()
+    const contestData = await request.json()
     
     // Validate required fields
-    const requiredFields = ['title', 'company', 'location', 'type', 'salary', 'description', 'category']
+    const requiredFields = ['title', 'organizer', 'description', 'prize', 'deadline', 'startDate', 'endDate', 'category']
     for (const field of requiredFields) {
-      if (!jobData[field]) {
+      if (!contestData[field]) {
         return NextResponse.json({
           success: false,
           error: `Missing required field: ${field}`
@@ -118,119 +117,122 @@ export async function POST(request: NextRequest) {
     
     const { collections } = await getDatabaseCollections()
     
-    // Create new job document
-    const newJob: Omit<Job, '_id'> = {
-      ...jobData,
+    // Create new contest document
+    const newContest: Omit<Contest, '_id'> = {
+      ...contestData,
+      startDate: new Date(contestData.startDate),
+      endDate: new Date(contestData.endDate),
+      deadline: new Date(contestData.deadline),
       posted: new Date(),
       featured: false,
       active: true,
+      participants: 0,
       views: 0,
-      applications: 0,
-      requirements: jobData.requirements || [],
-      tags: jobData.tags || []
+      tags: contestData.tags || [],
+      rules: contestData.rules || []
     }
     
-    // Insert job into database
-    const result = await collections.jobs.insertOne(newJob)
+    // Insert contest into database
+    const result = await collections.contests.insertOne(newContest)
     
-    // Return created job with ID
-    const createdJob = await collections.jobs.findOne({ _id: result.insertedId })
+    // Return created contest with ID
+    const createdContest = await collections.contests.findOne({ _id: result.insertedId })
     
     return NextResponse.json({
       success: true,
-      data: createdJob
-    } as ApiResponse<Job>, { status: 201 })
+      data: createdContest
+    } as ApiResponse<Contest>, { status: 201 })
     
   } catch (error) {
-    console.error('Error creating job:', error)
+    console.error('Error creating contest:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to create job'
+      error: 'Failed to create contest'
     } as ApiResponse, { status: 500 })
   }
 }
 
-// PUT /api/jobs - Update a job
+// PUT /api/contests - Update a contest
 export async function PUT(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const jobId = searchParams.get('id')
+    const contestId = searchParams.get('id')
     
-    if (!jobId) {
+    if (!contestId) {
       return NextResponse.json({
         success: false,
-        error: 'Job ID is required'
+        error: 'Contest ID is required'
       } as ApiResponse, { status: 400 })
     }
     
     const updateData = await request.json()
     const { collections } = await getDatabaseCollections()
     
-    // Update job in database
-    const result = await collections.jobs.updateOne(
-      { _id: jobId },
+    // Update contest in database
+    const result = await collections.contests.updateOne(
+      { _id: contestId },
       { $set: { ...updateData, updatedAt: new Date() } }
     )
     
     if (result.matchedCount === 0) {
       return NextResponse.json({
         success: false,
-        error: 'Job not found'
+        error: 'Contest not found'
       } as ApiResponse, { status: 404 })
     }
     
-    // Return updated job
-    const updatedJob = await collections.jobs.findOne({ _id: jobId })
+    // Return updated contest
+    const updatedContest = await collections.contests.findOne({ _id: contestId })
     
     return NextResponse.json({
       success: true,
-      data: updatedJob
-    } as ApiResponse<Job>)
+      data: updatedContest
+    } as ApiResponse<Contest>)
     
   } catch (error) {
-    console.error('Error updating job:', error)
+    console.error('Error updating contest:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to update job'
+      error: 'Failed to update contest'
     } as ApiResponse, { status: 500 })
   }
 }
 
-// DELETE /api/jobs - Delete a job
+// DELETE /api/contests - Delete a contest
 export async function DELETE(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const jobId = searchParams.get('id')
+    const contestId = searchParams.get('id')
     
-    if (!jobId) {
+    if (!contestId) {
       return NextResponse.json({
         success: false,
-        error: 'Job ID is required'
+        error: 'Contest ID is required'
       } as ApiResponse, { status: 400 })
     }
     
     const { collections } = await getDatabaseCollections()
     
-    // Delete job from database
-    const result = await collections.jobs.deleteOne({ _id: jobId })
+    // Delete contest from database
+    const result = await collections.contests.deleteOne({ _id: contestId })
     
     if (result.deletedCount === 0) {
       return NextResponse.json({
         success: false,
-        error: 'Job not found'
+        error: 'Contest not found'
       } as ApiResponse, { status: 404 })
     }
     
     return NextResponse.json({
       success: true,
-      message: 'Job deleted successfully'
+      message: 'Contest deleted successfully'
     } as ApiResponse)
     
   } catch (error) {
-    console.error('Error deleting job:', error)
+    console.error('Error deleting contest:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to delete job'
+      error: 'Failed to delete contest'
     } as ApiResponse, { status: 500 })
   }
 }

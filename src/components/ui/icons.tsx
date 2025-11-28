@@ -174,6 +174,7 @@ export const FacebookIcon = FiFacebook;
 export const TwitterIcon = FiTwitter;
 export const LinkedinIcon = FiLinkedin;
 export const InstagramIcon = FiInstagram;
+export const TelegramIcon = FiMessageCircle; // Using message circle as Telegram placeholder
 
 // Additional Professional Icons
 export const GlobeIcon = HiOutlineGlobeAlt;
@@ -183,6 +184,10 @@ export const ShieldIcon = HiOutlineShieldCheck;
 export const ChartIcon = HiOutlineChartBar;
 export const GiftIcon = HiOutlineGift;
 export const SparklesIcon = HiOutlineSparkles;
+
+// Additional Icons for Homepage
+export const FireIcon = BsStarFill; // Using star fill as fire placeholder
+export const TrophyIcon = BsStarFill; // Using star fill as trophy placeholder
 
 // Default export with all icons
 export const Icons = {
