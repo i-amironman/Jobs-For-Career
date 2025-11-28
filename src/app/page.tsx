@@ -84,7 +84,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto mb-8">
               <div className="relative flex-1">
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <SearchIcon />
+                  <SearchIcon className="h-4 w-4" />
                 </div>
                 <Input
                   placeholder="Job title, skills, or company"
@@ -93,7 +93,7 @@ export default function Home() {
               </div>
               <div className="relative flex-1">
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <MapPinIcon />
+                  <MapPinIcon className="h-4 w-4" />
                 </div>
                 <Input
                   placeholder="Location or Remote"
@@ -102,26 +102,26 @@ export default function Home() {
               </div>
               <Button className="px-8 py-4 text-lg">
                 Search Jobs
-                <ArrowRightIcon />
+                <ArrowRightIcon className="h-4 w-4 ml-2" />
               </Button>
             </div>
 
             {/* Quick Links */}
             <div className="flex flex-wrap justify-center gap-4">
               <Button variant="outline" className="rounded-full">
-                <BriefcaseIcon />
+                <BriefcaseIcon className="h-4 w-4 mr-2" />
                 Engineering
               </Button>
               <Button variant="outline" className="rounded-full">
-                <BookOpenIcon />
+                <BookOpenIcon className="h-4 w-4 mr-2" />
                 Internships
               </Button>
               <Button variant="outline" className="rounded-full">
-                <BuildingIcon />
+                <BuildingIcon className="h-4 w-4 mr-2" />
                 Remote Jobs
               </Button>
               <Button variant="outline" className="rounded-full">
-                <TrendingUpIcon />
+                <TrendingUpIcon className="h-4 w-4 mr-2" />
                 Entry Level
               </Button>
             </div>
@@ -138,7 +138,7 @@ export default function Home() {
               return (
                 <div key={index} className="text-center">
                   <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Icon />
+                    <Icon className="h-6 w-6" />
                   </div>
                   <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">
                     {stat.value}
@@ -170,7 +170,7 @@ export default function Home() {
                   <div className="flex items-start justify-between">
                     <div className="flex items-center space-x-3">
                       <div className="h-12 w-12 bg-muted rounded-lg flex items-center justify-center">
-                        <BuildingIcon />
+                        <BuildingIcon className="h-6 w-6" />
                       </div>
                       <div>
                         <CardTitle className="text-lg group-hover:text-primary transition-colors">
@@ -191,11 +191,11 @@ export default function Home() {
                 <CardContent className="space-y-4">
                   <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                     <div className="flex items-center space-x-1">
-                      <MapPinIcon />
+                      <MapPinIcon className="h-4 w-4" />
                       <span>{job.location}</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <DollarSignIcon />
+                      <DollarSignIcon className="h-4 w-4" />
                       <span>{job.salary}</span>
                     </div>
                   </div>
@@ -203,14 +203,14 @@ export default function Home() {
                   <div className="flex items-center justify-between">
                     <Badge variant="secondary">{job.type}</Badge>
                     <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-                      <ClockIcon />
+                      <ClockIcon className="h-4 w-4" />
                       <span>{job.posted}</span>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
                     <div className="flex items-center space-x-1">
-                      <StarIcon className="text-primary" />
+                      <StarIcon className="h-4 w-4 text-primary" />
                       <span className="text-sm font-medium">4.8</span>
                       <span className="text-sm text-muted-foreground">(23)</span>
                     </div>
@@ -226,7 +226,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Button size="lg">
               View All Jobs
-              <ArrowRightIcon />
+              <ArrowRightIcon className="h-4 w-4 ml-2" />
             </Button>
           </div>
         </div>
@@ -248,7 +248,7 @@ export default function Home() {
             <Card className="text-center">
               <CardHeader>
                 <div className="h-16 w-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <SearchIcon />
+                  <SearchIcon className="h-8 w-8" />
                 </div>
                 <CardTitle>Smart Search</CardTitle>
               </CardHeader>
@@ -262,7 +262,7 @@ export default function Home() {
             <Card className="text-center">
               <CardHeader>
                 <div className="h-16 w-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <UsersIcon />
+                  <UsersIcon className="h-8 w-8" />
                 </div>
                 <CardTitle>Direct Connect</CardTitle>
               </CardHeader>
@@ -276,7 +276,7 @@ export default function Home() {
             <Card className="text-center">
               <CardHeader>
                 <div className="h-16 w-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <CheckCircleIcon />
+                  <CheckCircleIcon className="h-8 w-8" />
                 </div>
                 <CardTitle>Verified Jobs</CardTitle>
               </CardHeader>
@@ -302,7 +302,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-primary hover:bg-gray-100">
               Get Started Free
-              <ArrowRightIcon />
+              <ArrowRightIcon className="h-4 w-4 ml-2" />
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
               Post a Job

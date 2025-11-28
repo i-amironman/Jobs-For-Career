@@ -58,7 +58,7 @@ export function Footer() {
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
                 <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                  <BriefcaseIcon />
+                  <BriefcaseIcon className="h-4 w-4" />
                 </div>
                 <span className="text-xl font-bold text-foreground">JobsForCareer</span>
               </div>
@@ -90,7 +90,7 @@ export function Footer() {
                       href={social.href}
                       className="h-10 w-10 rounded-full bg-background border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
                     >
-                      <Icon />
+                      <Icon className="h-4 w-4" />
                     </a>
                   )
                 })}
@@ -108,7 +108,7 @@ export function Footer() {
                         href={link.href}
                         className="text-muted-foreground hover:text-primary transition-colors duration-200 flex items-center space-x-2"
                       >
-                        {link.icon && <link.icon />}
+                        {link.icon && <link.icon className="h-4 w-4" />}
                         <span>{link.name}</span>
                       </a>
                     </li>
@@ -125,11 +125,11 @@ export function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-between py-6 px-4">
               <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
                 <div className="flex items-center space-x-2 text-muted-foreground">
-                  <MailIcon />
+                  <MailIcon className="h-4 w-4" />
                   <span>support@jobsforcareer.com</span>
                 </div>
                 <div className="flex items-center space-x-2 text-muted-foreground">
-                  <PhoneIcon />
+                  <PhoneIcon className="h-4 w-4" />
                   <span>+1 (555) 123-4567</span>
                 </div>
                 <div className="flex items-center space-x-2 text-muted-foreground">

@@ -47,10 +47,3 @@ test
 prompt
 
 server.log
-
-#git
-.gitignore
-
-#docker
-.dockerignore
-.docker

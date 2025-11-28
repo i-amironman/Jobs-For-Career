@@ -41,7 +41,7 @@ export function Header() {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                <BriefcaseIcon />
+                <BriefcaseIcon className="h-4 w-4" />
               </div>
               <span className="text-xl font-bold text-foreground">JobsForCareer</span>
             </div>
@@ -57,7 +57,7 @@ export function Header() {
                   href={item.href}
                   className="flex items-center space-x-2 text-foreground/80 hover:text-primary transition-colors duration-200"
                 >
-                  <Icon />
+                  <Icon className="h-4 w-4" />
                   <span className="font-medium">{item.name}</span>
                 </a>
               )
@@ -68,7 +68,7 @@ export function Header() {
           <div className="hidden lg:flex items-center flex-1 max-w-md mx-6">
             <div className="relative w-full">
               <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                <SearchIcon />
+                <SearchIcon className="h-4 w-4" />
               </div>
               <Input
                 placeholder="Search jobs, companies, or skills..."
@@ -81,7 +81,7 @@ export function Header() {
           <div className="flex items-center space-x-4">
             {/* Notifications */}
             <Button variant="ghost" size="icon" className="relative">
-              <BellIcon />
+              <BellIcon className="h-4 w-4" />
               <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs">
                 3
               </Badge>
@@ -93,7 +93,7 @@ export function Header() {
                 <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
                   <span className="text-sm font-medium">JD</span>
                 </div>
-                <ChevronDownIcon />
+                <ChevronDownIcon className="h-4 w-4" />
               </Button>
               
               {/* Dropdown Menu */}
@@ -109,7 +109,7 @@ export function Header() {
                         href={item.href}
                         className="flex items-center space-x-2 px-2 py-2 text-sm hover:bg-accent rounded-md transition-colors duration-200"
                       >
-                        <Icon />
+                        <Icon className="h-4 w-4" />
                         <span>{item.name}</span>
                       </a>
                     )
@@ -119,7 +119,7 @@ export function Header() {
                     href="#"
                     className="flex items-center space-x-2 px-2 py-2 text-sm hover:bg-accent rounded-md transition-colors duration-200"
                   >
-                    <LogOutIcon />
+                    <LogOutIcon className="h-4 w-4" />
                     <span>Log out</span>
                   </a>
                 </div>
@@ -133,7 +133,7 @@ export function Header() {
               className="md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              <MenuIcon />
+              <MenuIcon className="h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -143,7 +143,7 @@ export function Header() {
           <div className="md:hidden border-t bg-background px-4 py-4">
             <div className="relative mb-4">
               <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                <SearchIcon />
+                <SearchIcon className="h-4 w-4" />
               </div>
               <Input
                 placeholder="Search jobs..."
@@ -161,7 +161,7 @@ export function Header() {
                     className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-accent transition-colors duration-200"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <Icon />
+                    <Icon className="h-4 w-4" />
                     <span className="font-medium">{item.name}</span>
                   </a>
                 )
@@ -170,7 +170,7 @@ export function Header() {
 
             <div className="border-t pt-4 mt-4">
               <Button className="w-full">
-                <LogInIcon />
+                <LogInIcon className="h-4 w-4 mr-2" />
                 Sign In
               </Button>
             </div>
