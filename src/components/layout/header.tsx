@@ -8,7 +8,6 @@ import { Icons } from '@/components/ui/icons';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -24,16 +23,19 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/jobs" className="text-foreground hover:text-primary transition-colors">
-              Find Jobs
+            <Link href="/jobs" className="text-foreground hover:text-primary transition-colors font-medium">
+              Jobs
             </Link>
-            <Link href="/companies" className="text-foreground hover:text-primary transition-colors">
-              Companies
+            <Link href="/internships" className="text-foreground hover:text-primary transition-colors font-medium">
+              Internships
             </Link>
-            <Link href="/resources" className="text-foreground hover:text-primary transition-colors">
-              Resources
+            <Link href="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium">
+              Scholarships
             </Link>
-            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/govt-jobs" className="text-foreground hover:text-primary transition-colors font-medium">
+              Govt. Jobs
+            </Link>
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors font-medium">
               About
             </Link>
           </nav>
@@ -43,7 +45,7 @@ const Header = () => {
             <div className="relative">
               <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                placeholder="Search jobs, companies..."
+                placeholder="Search jobs, internships..."
                 className="w-64 pl-10"
               />
             </div>
@@ -76,22 +78,25 @@ const Header = () => {
             <div className="relative">
               <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                placeholder="Search jobs, companies..."
+                placeholder="Search jobs, internships..."
                 className="w-full pl-10"
               />
             </div>
             
             <nav className="space-y-2">
-              <Link href="/jobs" className="block py-2 text-foreground hover:text-primary transition-colors">
-                Find Jobs
+              <Link href="/jobs" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+                Jobs
               </Link>
-              <Link href="/companies" className="block py-2 text-foreground hover:text-primary transition-colors">
-                Companies
+              <Link href="/internships" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+                Internships
               </Link>
-              <Link href="/resources" className="block py-2 text-foreground hover:text-primary transition-colors">
-                Resources
+              <Link href="/scholarships" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+                Scholarships
               </Link>
-              <Link href="/about" className="block py-2 text-foreground hover:text-primary transition-colors">
+              <Link href="/govt-jobs" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+                Govt. Jobs
+              </Link>
+              <Link href="/about" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
                 About
               </Link>
             </nav>
