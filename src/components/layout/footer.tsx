@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';

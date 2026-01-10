@@ -1,3 +1,5 @@
+'use client';
+
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { Button } from '@/components/ui/button';
@@ -15,24 +17,12 @@ export default function ScholarshipsPage() {
           {/* Hero Section */}
           <div className="text-center mb-12">
             <div className="mb-8">
-              <div className="w-32 h-32 mx-auto mb-6 relative">
-                <svg className="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="100" cy="100" r="80" fill="#FF6F00" fillOpacity="0.1"/>
-                  <path d="M100 40 L120 70 L160 70 L130 100 L140 140 L100 120 L60 140 L70 100 L40 70 L80 70 Z" fill="#FF6F00" fillOpacity="0.8"/>
-                  <circle cx="100" cy="100" r="8" fill="#FFFFFF"/>
-                  <path d="M100 20 L100 30" stroke="#FF6F00" strokeWidth="3" strokeLinecap="round"/>
-                  <path d="M90 30 L110 30" stroke="#FF6F00" strokeWidth="3" strokeLinecap="round"/>
-                  <path d="M85 35 L115 35" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M80 40 L120 40" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M70 140 L100 100 L130 140" stroke="#FF6F00" strokeWidth="3" fill="none" strokeLinecap="round"/>
-                  <circle cx="85" cy="125" r="3" fill="#FF6F00"/>
-                  <circle cx="115" cy="125" r="3" fill="#FF6F00"/>
-                  <circle cx="100" cy="115" r="3" fill="#FF6F00"/>
-                  <path d="M50 80 L50 120" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M150 80 L150 120" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M60 70 L60 130" stroke="#FF6F00" strokeWidth="1" strokeLinecap="round"/>
-                  <path d="M140 70 L140 130" stroke="#FF6F00" strokeWidth="1" strokeLinecap="round"/>
-                </svg>
+              <div className="w-64 h-40 mx-auto mb-6 relative">
+                <img 
+                  src="/illustrations/scholarships-hero.png" 
+                  alt="Fund Your Education with Scholarships" 
+                  className="w-full h-full object-cover rounded-lg shadow-soft"
+                />
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -88,70 +78,44 @@ export default function ScholarshipsPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 relative">
-                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="30" y="30" width="40" height="40" rx="4" fill="#FF6F00" fillOpacity="0.2"/>
-                  <rect x="40" y="40" width="20" height="20" rx="2" fill="#FF6F00" fillOpacity="0.8"/>
-                  <circle cx="50" cy="50" r="3" fill="#FFFFFF"/>
-                  <path d="M50 20 L50 25" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M50 75 L50 80" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M30 50 L25 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M75 50 L80 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M35 35 L45 45" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M55 55 L65 65" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
+                <img 
+                  src="/illustrations/jobs-stats.png" 
+                  alt="Active Scholarships" 
+                  className="w-full h-full object-cover rounded-lg"
+                />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">8,500+</div>
               <div className="text-sm text-muted-foreground">Active Scholarships</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 relative">
-                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="35" fill="#FF6F00" fillOpacity="0.2"/>
-                  <path d="M50 25 L60 35 L60 45 L50 55 L40 45 L40 35 Z" fill="#FF6F00" fillOpacity="0.8"/>
-                  <circle cx="50" cy="40" r="4" fill="#FFFFFF"/>
-                  <path d="M50 15 L50 20" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M50 65 L50 70" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M30 50 L35 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M65 50 L70 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M50 85 L50 90" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M45 90 L55 90" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
+                <img 
+                  src="/illustrations/success-stats.png" 
+                  alt="Total Awards" 
+                  className="w-full h-full object-cover rounded-lg"
+                />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">$50M+</div>
               <div className="text-sm text-muted-foreground">Total Awards</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 relative">
-                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="25" fill="#FF6F00" fillOpacity="0.2"/>
-                  <circle cx="50" cy="50" r="15" fill="#FF6F00" fillOpacity="0.8"/>
-                  <circle cx="50" cy="50" r="5" fill="#FFFFFF"/>
-                  <path d="M50 25 L50 35" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M50 65 L50 75" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M30 50 L40 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M60 50 L70 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M35 35 L45 45" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M55 55 L65 65" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M25 35 L35 45" stroke="#FF6F00" strokeWidth="1" strokeLinecap="round"/>
-                  <path d="M65 55 L75 65" stroke="#FF6F00" strokeWidth="1" strokeLinecap="round"/>
-                </svg>
+                <img 
+                  src="/illustrations/seekers-stats.png" 
+                  alt="Students Helped" 
+                  className="w-full h-full object-cover rounded-lg"
+                />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">35,000+</div>
               <div className="text-sm text-muted-foreground">Students Helped</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 relative">
-                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M50 20 L60 40 L80 40 L65 55 L70 75 L50 60 L30 75 L35 55 L20 40 L40 40 Z" fill="#FF6F00" fillOpacity="0.8"/>
-                  <circle cx="50" cy="50" r="3" fill="#FFFFFF"/>
-                  <path d="M50 80 L50 85" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M45 85 L55 85" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M50 10 L50 15" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M85 50 L90 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M10 50 L15 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M70 30 L80 40" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round" fill="none"/>
-                  <path d="M30 30 L20 40" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round" fill="none"/>
-                </svg>
+                <img 
+                  src="/illustrations/success-stats.png" 
+                  alt="Success Rate" 
+                  className="w-full h-full object-cover rounded-lg"
+                />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">95%</div>
               <div className="text-sm text-muted-foreground">Success Rate</div>
