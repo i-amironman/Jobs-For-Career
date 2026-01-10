@@ -177,6 +177,15 @@ const Footer = () => {
                 <span>San Francisco, CA</span>
               </div>
             </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="flex items-center space-x-2"
+            >
+              <Icons.ArrowRight className="h-4 w-4 -rotate-90" />
+              <span>Back to Top</span>
+            </Button>
           </div>
         </div>
       </div>

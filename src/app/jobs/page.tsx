@@ -14,6 +14,19 @@ export default function JobsPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero Section */}
           <div className="text-center mb-12">
+            <div className="mb-8">
+              <div className="w-32 h-32 mx-auto mb-6 relative">
+                <svg className="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="100" r="80" fill="#FF6F00" fillOpacity="0.1"/>
+                  <path d="M100 40 L120 80 L160 80 L130 110 L140 150 L100 130 L60 150 L70 110 L40 80 L80 80 Z" fill="#FF6F00" fillOpacity="0.8"/>
+                  <circle cx="100" cy="100" r="8" fill="#FFFFFF"/>
+                  <path d="M70 140 L100 100 L130 140" stroke="#FF6F00" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <circle cx="85" cy="125" r="3" fill="#FF6F00"/>
+                  <circle cx="115" cy="125" r="3" fill="#FF6F00"/>
+                  <circle cx="100" cy="115" r="3" fill="#FF6F00"/>
+                </svg>
+              </div>
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Find Your Dream Job
             </h1>
@@ -67,18 +80,56 @@ export default function JobsPage() {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 relative">
+                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="20" y="40" width="60" height="40" rx="4" fill="#FF6F00" fillOpacity="0.2"/>
+                  <rect x="30" y="50" width="40" height="20" rx="2" fill="#FF6F00" fillOpacity="0.8"/>
+                  <circle cx="50" cy="60" r="3" fill="#FFFFFF"/>
+                  <path d="M50 20 L50 40" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M40 30 L50 20 L60 30" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                </svg>
+              </div>
               <div className="text-3xl font-bold text-primary mb-2">15,000+</div>
               <div className="text-sm text-muted-foreground">Active Jobs</div>
             </div>
             <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 relative">
+                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="25" y="35" width="50" height="30" rx="4" fill="#FF6F00" fillOpacity="0.2"/>
+                  <rect x="35" y="45" width="30" height="10" rx="2" fill="#FF6F00" fillOpacity="0.8"/>
+                  <circle cx="50" cy="50" r="2" fill="#FFFFFF"/>
+                  <path d="M20 25 L50 15 L80 25" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                  <path d="M20 25 L20 35" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M80 25 L80 35" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
               <div className="text-3xl font-bold text-primary mb-2">800+</div>
               <div className="text-sm text-muted-foreground">Companies</div>
             </div>
             <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 relative">
+                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="25" fill="#FF6F00" fillOpacity="0.2"/>
+                  <circle cx="50" cy="50" r="15" fill="#FF6F00" fillOpacity="0.8"/>
+                  <circle cx="50" cy="50" r="5" fill="#FFFFFF"/>
+                  <path d="M50 25 L50 35" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M50 65 L50 75" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M30 50 L40 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M60 50 L70 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
               <div className="text-3xl font-bold text-primary mb-2">75,000+</div>
               <div className="text-sm text-muted-foreground">Job Seekers</div>
             </div>
             <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 relative">
+                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 20 L60 40 L80 40 L65 55 L70 75 L50 60 L30 75 L35 55 L20 40 L40 40 Z" fill="#FF6F00" fillOpacity="0.8"/>
+                  <circle cx="50" cy="50" r="3" fill="#FFFFFF"/>
+                  <path d="M50 80 L50 85" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M45 85 L55 85" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
               <div className="text-3xl font-bold text-primary mb-2">92%</div>
               <div className="text-sm text-muted-foreground">Success Rate</div>
             </div>
@@ -210,21 +261,45 @@ export default function JobsPage() {
 
           {/* Job Categories */}
           <div>
-            <h2 className="text-3xl font-bold text-foreground mb-8">Browse by Category</h2>
+            <div className="text-center mb-8">
+              <div className="w-24 h-24 mx-auto mb-6">
+                <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="40" fill="#FF6F00" fillOpacity="0.1"/>
+                  <rect x="35" y="35" width="30" height="30" rx="4" fill="#FF6F00" fillOpacity="0.8"/>
+                  <rect x="42" y="42" width="16" height="16" rx="2" fill="#FFFFFF"/>
+                  <circle cx="50" cy="50" r="2" fill="#FF6F00"/>
+                  <path d="M50 10 L50 20" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M50 80 L50 90" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M10 50 L20 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M80 50 L90 50" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M25 25 L30 30" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M70 30 L75 25" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M25 75 L30 70" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M70 70 L75 75" stroke="#FF6F00" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <h2 className="text-3xl font-bold text-foreground mb-4">Browse by Category</h2>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {[
-                { name: 'Technology', icon: '💻', jobs: 5432 },
-                { name: 'Marketing', icon: '📢', jobs: 3211 },
-                { name: 'Design', icon: '🎨', jobs: 2156 },
-                { name: 'Sales', icon: '💼', jobs: 1876 },
-                { name: 'Finance', icon: '💰', jobs: 1654 },
-                { name: 'Healthcare', icon: '🏥', jobs: 1432 },
-                { name: 'Education', icon: '🎓', jobs: 1298 },
-                { name: 'Customer Support', icon: '🎧', jobs: 987 },
+                { name: 'Technology', icon: '💻', jobs: 5432, color: '#3B82F6' },
+                { name: 'Marketing', icon: '📢', jobs: 3211, color: '#10B981' },
+                { name: 'Design', icon: '🎨', jobs: 2156, color: '#F59E0B' },
+                { name: 'Sales', icon: '💼', jobs: 1876, color: '#EF4444' },
+                { name: 'Finance', icon: '💰', jobs: 1654, color: '#8B5CF6' },
+                { name: 'Healthcare', icon: '🏥', jobs: 1432, color: '#EC4899' },
+                { name: 'Education', icon: '🎓', jobs: 1298, color: '#06B6D4' },
+                { name: 'Customer Support', icon: '🎧', jobs: 987, color: '#84CC16' },
               ].map((category, index) => (
-                <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer">
+                <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer group">
                   <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-3">{category.icon}</div>
+                    <div className="w-16 h-16 mx-auto mb-4 relative group-hover:scale-110 transition-transform">
+                      <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="35" fill={category.color} fillOpacity="0.1"/>
+                        <text x="50" y="55" textAnchor="middle" fontSize="24">{category.icon}</text>
+                        <circle cx="50" cy="50" r="25" fill="none" stroke={category.color} strokeWidth="2" strokeDasharray="4 2" opacity="0.3"/>
+                      </svg>
+                    </div>
                     <h3 className="font-medium text-foreground mb-1">{category.name}</h3>
                     <p className="text-sm text-muted-foreground">{category.jobs} jobs</p>
                   </CardContent>

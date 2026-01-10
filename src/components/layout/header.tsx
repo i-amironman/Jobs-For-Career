@@ -1,20 +1,41 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Icons } from '@/components/ui/icons';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2" onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}>
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
               <Icons.Briefcase className="h-5 w-5 text-primary-foreground" />
             </div>
@@ -74,7 +95,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-4">
+          <div ref={menuRef} className="md:hidden py-4 space-y-4">
             <div className="relative">
               <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
@@ -84,19 +105,39 @@ const Header = () => {
             </div>
             
             <nav className="space-y-2">
-              <Link href="/jobs" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+              <Link 
+                href="/jobs" 
+                className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Jobs
               </Link>
-              <Link href="/internships" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+              <Link 
+                href="/internships" 
+                className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Internships
               </Link>
-              <Link href="/scholarships" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+              <Link 
+                href="/scholarships" 
+                className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Scholarships
               </Link>
-              <Link href="/govt-jobs" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+              <Link 
+                href="/govt-jobs" 
+                className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Govt. Jobs
               </Link>
-              <Link href="/about" className="block py-2 text-foreground hover:text-primary transition-colors font-medium">
+              <Link 
+                href="/about" 
+                className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 About
               </Link>
             </nav>
