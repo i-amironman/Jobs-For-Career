@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/ui/icons';
+import { AnimatedNumber } from '@/components/ui/animated-number';
 
 export default function GovtJobsPage() {
   return (
@@ -17,13 +18,13 @@ export default function GovtJobsPage() {
           {/* Hero Section */}
           <div className="text-center mb-12">
             <div className="mb-8">
-              <div className="w-64 h-40 mx-auto mb-6 relative">
-                <img 
-                  src="/illustrations/govt-jobs-hero.png" 
-                  alt="Secure Your Future with Government Jobs" 
-                  className="w-full h-full object-cover rounded-lg shadow-soft"
-                />
-              </div>
+              <div className="w-32 h-32 mx-auto mb-6 relative flex items-center justify-center">
+              <img 
+                src="/illustrations/govt-jobs-hero.png" 
+                alt="Secure Your Future with Government Jobs" 
+                className="w-full h-full object-contain"
+              />
+            </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Secure Your Future with Government Jobs
@@ -77,47 +78,55 @@ export default function GovtJobsPage() {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
+              <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
                   src="/illustrations/jobs-stats.png" 
                   alt="Active Positions" 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">12,000+</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber end={12000} suffix="+" duration={2000} />
+              </div>
               <div className="text-sm text-muted-foreground">Active Positions</div>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
+              <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
                   src="/illustrations/companies-stats.png" 
                   alt="Agencies" 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">500+</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber end={500} suffix="+" duration={2000} />
+              </div>
               <div className="text-sm text-muted-foreground">Agencies</div>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
+              <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
                   src="/illustrations/seekers-stats.png" 
                   alt="Applications" 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">100,000+</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber end={100000} suffix="+" duration={2000} />
+              </div>
               <div className="text-sm text-muted-foreground">Applications</div>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
+              <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
                   src="/illustrations/success-stats.png" 
                   alt="Job Security" 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">85%</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber end={85} suffix="%" duration={2000} />
+              </div>
               <div className="text-sm text-muted-foreground">Job Security</div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/ui/icons';
+import { AnimatedNumber } from '@/components/ui/animated-number';
 
 export default function ScholarshipsPage() {
   return (
@@ -17,13 +18,13 @@ export default function ScholarshipsPage() {
           {/* Hero Section */}
           <div className="text-center mb-12">
             <div className="mb-8">
-              <div className="w-64 h-40 mx-auto mb-6 relative">
-                <img 
-                  src="/illustrations/scholarships-hero.png" 
-                  alt="Fund Your Education with Scholarships" 
-                  className="w-full h-full object-cover rounded-lg shadow-soft"
-                />
-              </div>
+              <div className="w-32 h-32 mx-auto mb-6 relative flex items-center justify-center">
+              <img 
+                src="/illustrations/scholarships-hero.png" 
+                alt="Fund Your Education with Scholarships" 
+                className="w-full h-full object-contain"
+              />
+            </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Fund Your Education with Scholarships
@@ -77,47 +78,55 @@ export default function ScholarshipsPage() {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
+              <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
                   src="/illustrations/jobs-stats.png" 
                   alt="Active Scholarships" 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">8,500+</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber end={8500} suffix="+" duration={2000} />
+              </div>
               <div className="text-sm text-muted-foreground">Active Scholarships</div>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
+              <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
                   src="/illustrations/success-stats.png" 
                   alt="Total Awards" 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">$50M+</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber end={50} prefix="$" suffix="M+" duration={2000} />
+              </div>
               <div className="text-sm text-muted-foreground">Total Awards</div>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
+              <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
                   src="/illustrations/seekers-stats.png" 
                   alt="Students Helped" 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">35,000+</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber end={35000} suffix="+" duration={2000} />
+              </div>
               <div className="text-sm text-muted-foreground">Students Helped</div>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 relative">
+              <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
                   src="/illustrations/success-stats.png" 
                   alt="Success Rate" 
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-3xl font-bold text-primary mb-2">95%</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber end={95} suffix="%" duration={2000} />
+              </div>
               <div className="text-sm text-muted-foreground">Success Rate</div>
             </div>
           </div>
