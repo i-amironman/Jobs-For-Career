@@ -281,7 +281,8 @@ export default function GovtJobsPage() {
                   <h3 className="font-semibold text-foreground mb-4 text-center">Step 1: Research & Prepare</h3>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li>Research agencies and positions</li>
-                    <li>Prepare federal resume format</li><li>Obtain required security clearance</li>
+                    <li>Prepare federal resume format</li>
+                    <li>Obtain required security clearance</li>
                     <li>Gather necessary documentation</li>
                   </ul>
                 </CardContent>
@@ -291,9 +292,9 @@ export default function GovtJobsPage() {
                   <h3 className="font-semibold text-foreground mb-4 text-center">Step 2: Apply Online</h3>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li>Use USAJOBS.gov portal</li>
-</ul><li>Create detailed profile</li>
-<li>Submit required documents</li>
-<li>Track application status</li>
+                    <li>Create detailed profile</li>
+                    <li>Submit required documents</li>
+                    <li>Track application status</li>
                   </ul>
                 </CardContent>
               </Card>

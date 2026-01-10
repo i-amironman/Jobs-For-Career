@@ -87,7 +87,7 @@ export default function AboutPage() {
                     <Icons.Globe className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="font-semibold text-foreground mb-2">Accessibility</h3>
-                  <div className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground">
                     Our platform is designed to be accessible to all users.
                   </p>
                 </CardContent>
@@ -113,7 +113,7 @@ export default function AboutPage() {
                   avatar: '👨‍💻'
                 },
                 {
-                  'Emily Rodriguez',
+                  name: 'Emily Rodriguez',
                   role: 'Head of Operations',
                   bio: 'Operations expert focused on user experience and platform growth.',
                   avatar: '👩‍🎓'

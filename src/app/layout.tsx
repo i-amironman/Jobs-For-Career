@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://jobsforcareer.com'),
   title: "JobsForCareer - Find Jobs & Internships for Students and Freshers",
   description: "The ultimate platform for students and freshers to discover exciting job opportunities, internships, and connect with top companies worldwide. Start your career journey today!",
   keywords: ["jobs", "internships", "careers", "students", "freshers", "job search", "employment", "recruitment", "entry level jobs", "graduate jobs"],
