@@ -570,39 +570,6 @@ export default async function GovtJobPage({ params }: GovtJobPageProps) {
                   </CardContent>
                 </Card>
 
-                {/* Quick Stats */}
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-4">Quick Stats</h3>
-                    <div className="space-y-4">
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          <AnimatedNumber end={12000} suffix="+" duration={2000} />
-                        </div>
-                        <div className="text-sm text-muted-foreground">Active Positions</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          <AnimatedNumber end={500} suffix="+" duration={2000} />
-                        </div>
-                        <div className="text-sm text-muted-foreground">Agencies</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          <AnimatedNumber end={100000} suffix="+" duration={2000} />
-                        </div>
-                        <div className="text-sm text-muted-foreground">Applications</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          <AnimatedNumber end={85} suffix="%" duration={2000} />
-                        </div>
-                        <div className="text-sm text-muted-foreground">Job Security</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
                 {/* Apply Button */}
                 <Card>
                   <CardContent className="p-6">

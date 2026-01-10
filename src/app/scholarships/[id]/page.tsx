@@ -542,39 +542,6 @@ export default async function ScholarshipPage({ params }: ScholarshipPageProps) 
                   </CardContent>
                 </Card>
 
-                {/* Quick Stats */}
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-4">Quick Stats</h3>
-                    <div className="space-y-4">
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          <AnimatedNumber end={8500} suffix="+" duration={2000} />
-                        </div>
-                        <div className="text-sm text-muted-foreground">Active Scholarships</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          <AnimatedNumber end={50} prefix="$" suffix="M+" duration={2000} />
-                        </div>
-                        <div className="text-sm text-muted-foreground">Total Awards</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          <AnimatedNumber end={35000} suffix="+" duration={2000} />
-                        </div>
-                        <div className="text-sm text-muted-foreground">Students Helped</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">
-                          <AnimatedNumber end={95} suffix="%" duration={2000} />
-                        </div>
-                        <div className="text-sm text-muted-foreground">Success Rate</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
                 {/* Apply Button */}
                 <Card>
                   <CardContent className="p-6">

@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
+import { internshipListItems } from '@/lib/internship-data';
 
 export default function InternshipsPage() {
   return (
@@ -137,81 +138,8 @@ export default function InternshipsPage() {
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-8">Featured Internships</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  id: '1',
-                  title: 'Software Engineering Intern',
-                  company: 'TechCorp Solutions',
-                  location: 'San Francisco, CA',
-                  duration: 'Summer 2024',
-                  stipend: '$25-35/hr',
-                  posted: '3 days ago',
-                  logo: '🏢',
-                  featured: true,
-                  skills: ['JavaScript', 'React', 'Node.js', 'Git']
-                },
-                {
-                  id: '2',
-                  title: 'Marketing Intern',
-                  company: 'Digital Agency Pro',
-                  location: 'Remote',
-                  duration: 'Summer 2024',
-                  stipend: '$18-25/hr',
-                  posted: '1 week ago',
-                  logo: '📱',
-                  featured: true,
-                  skills: ['Social Media', 'Content Writing', 'SEO']
-                },
-                {
-                  id: '3',
-                  title: 'Data Science Intern',
-                  company: 'FinanceFlow',
-                  location: 'New York, NY',
-                  duration: 'Summer 2024',
-                  stipend: '$20-30/hr',
-                  posted: '2 weeks ago',
-                  logo: '💰',
-                  featured: true,
-                  skills: ['Python', 'SQL', 'Machine Learning', 'Excel']
-                },
-                {
-                  id: '4',
-                  title: 'Product Design Intern',
-                  company: 'Design Studio Pro',
-                  location: 'Los Angeles, CA',
-                  duration: 'Fall 2024',
-                  stipend: '$15-22/hr',
-                  posted: '4 days ago',
-                  logo: '🎨',
-                  featured: true,
-                  skills: ['Figma', 'Adobe XD', 'Prototyping', 'UI/UX']
-                },
-                {
-                  id: '5',
-                  title: 'Business Development Intern',
-                  company: 'StartupHub',
-                  location: 'Remote',
-                  duration: 'Year Round',
-                  stipend: '$12-18/hr',
-                  posted: '1 week ago',
-                  logo: '🚀',
-                  featured: true,
-                  skills: ['Sales', 'CRM', 'Communication', 'Research']
-                },
-                {
-                  id: '6',
-                  title: 'Cybersecurity Intern',
-                  company: 'SecurityTech Systems',
-                  location: 'Washington, DC',
-                  duration: 'Summer 2024',
-                  stipend: '$22-28/hr',
-                  posted: '5 days ago',
-                  logo: '🔒',
-                  featured: true,
-                  skills: ['Network Security', 'Penetration Testing', 'Python', 'Linux']
-                },
-              ].map((internship, index) => (
-                <Card key={index} className="hover:shadow-medium transition-shadow cursor-pointer">
+              {internshipListItems.map((internship) => (
+                <Card key={internship.id} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">
