@@ -3,14 +3,15 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   /* config options here */
+  // Enable strict mode for better development experience
+  reactStrictMode: true,
+  // Remove TypeScript error ignoring for better type safety
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
-  // 禁用 Next.js 热重载，由 nodemon 处理重编译
-  reactStrictMode: false,
+  // Remove ESLint error ignoring for better code quality
   eslint: {
-    // 构建时忽略ESLint错误
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 };
 

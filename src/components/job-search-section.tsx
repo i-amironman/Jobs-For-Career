@@ -62,7 +62,7 @@ const JobSearchSection = () => {
 
   return (
     <section className="py-16 bg-secondary/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
             Find Your Dream Job

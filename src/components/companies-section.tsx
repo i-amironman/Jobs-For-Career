@@ -64,7 +64,7 @@ const CompaniesSection = () => {
 
   return (
     <section className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-foreground mb-4">

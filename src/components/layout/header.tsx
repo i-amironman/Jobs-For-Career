@@ -29,17 +29,14 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2" onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}>
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 animate-gentle-rock">
               <Icons.Briefcase className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold text-foreground">JobsForCareer</span>
+            <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">JobsForCareer</span>
           </Link>
 
           {/* Desktop Navigation */}

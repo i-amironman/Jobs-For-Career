@@ -2,10 +2,11 @@
 
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
 
@@ -14,7 +15,7 @@ export default function JobsPage() {
     <div className="min-h-screen">
       <Header />
       <main className="py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           {/* Hero Section */}
           <div className="text-center mb-12">
             <div className="mb-8">
@@ -138,6 +139,7 @@ export default function JobsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
+                  id: '1',
                   title: 'Senior Frontend Developer',
                   company: 'TechCorp Solutions',
                   location: 'San Francisco, CA',
@@ -149,6 +151,7 @@ export default function JobsPage() {
                   skills: ['React', 'TypeScript', 'Node.js', 'AWS']
                 },
                 {
+                  id: '2',
                   title: 'Product Manager',
                   company: 'StartupHub',
                   location: 'New York, NY',
@@ -160,6 +163,7 @@ export default function JobsPage() {
                   skills: ['Product Strategy', 'Agile', 'Analytics']
                 },
                 {
+                  id: '3',
                   title: 'UX Designer',
                   company: 'Design Studio Pro',
                   location: 'Remote',
@@ -171,6 +175,7 @@ export default function JobsPage() {
                   skills: ['Figma', 'Adobe XD', 'Prototyping']
                 },
                 {
+                  id: '4',
                   title: 'Data Analyst',
                   company: 'FinanceFlow',
                   location: 'Chicago, IL',
@@ -182,6 +187,7 @@ export default function JobsPage() {
                   skills: ['Python', 'SQL', 'Tableau', 'Excel']
                 },
                 {
+                  id: '5',
                   title: 'Marketing Manager',
                   company: 'Digital Agency Pro',
                   location: 'Los Angeles, CA',
@@ -193,6 +199,7 @@ export default function JobsPage() {
                   skills: ['Digital Marketing', 'SEO', 'Content Strategy']
                 },
                 {
+                  id: '6',
                   title: 'Backend Engineer',
                   company: 'CloudTech Systems',
                   location: 'Seattle, WA',
@@ -248,7 +255,11 @@ export default function JobsPage() {
 
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-muted-foreground">{job.posted}</span>
-                      <Button size="sm">Apply Now</Button>
+                      <Button size="sm" asChild>
+                        <Link href={`/jobs/${job.id}`}>
+                          Apply Now
+                        </Link>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -270,23 +281,19 @@ export default function JobsPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {[
-                { name: 'Technology', icon: '💻', jobs: 5432, color: '#3B82F6' },
-                { name: 'Marketing', icon: '📢', jobs: 3211, color: '#10B981' },
-                { name: 'Design', icon: '🎨', jobs: 2156, color: '#F59E0B' },
-                { name: 'Sales', icon: '💼', jobs: 1876, color: '#EF4444' },
-                { name: 'Finance', icon: '💰', jobs: 1654, color: '#8B5CF6' },
-                { name: 'Healthcare', icon: '🏥', jobs: 1432, color: '#EC4899' },
-                { name: 'Education', icon: '🎓', jobs: 1298, color: '#06B6D4' },
-                { name: 'Customer Support', icon: '🎧', jobs: 987, color: '#84CC16' },
+                { name: 'Technology', icon: '💻', jobs: 5432, bgClass: 'bg-blue-50', borderClass: 'border-blue-300' },
+                { name: 'Marketing', icon: '📢', jobs: 3211, bgClass: 'bg-green-50', borderClass: 'border-green-300' },
+                { name: 'Design', icon: '🎨', jobs: 2156, bgClass: 'bg-amber-50', borderClass: 'border-amber-300' },
+                { name: 'Sales', icon: '💼', jobs: 1876, bgClass: 'bg-red-50', borderClass: 'border-red-300' },
+                { name: 'Finance', icon: '💰', jobs: 1654, bgClass: 'bg-purple-50', borderClass: 'border-purple-300' },
+                { name: 'Healthcare', icon: '🏥', jobs: 1432, bgClass: 'bg-pink-50', borderClass: 'border-pink-300' },
+                { name: 'Education', icon: '🎓', jobs: 1298, bgClass: 'bg-cyan-50', borderClass: 'border-cyan-300' },
+                { name: 'Customer Support', icon: '🎧', jobs: 987, bgClass: 'bg-lime-50', borderClass: 'border-lime-300' },
               ].map((category, index) => (
                 <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer group">
                   <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 relative group-hover:scale-110 transition-transform">
-                      <svg className="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="35" fill={category.color} fillOpacity="0.1"/>
-                        <text x="50" y="55" textAnchor="middle" fontSize="24">{category.icon}</text>
-                        <circle cx="50" cy="50" r="25" fill="none" stroke={category.color} strokeWidth="2" strokeDasharray="4 2" opacity="0.3"/>
-                      </svg>
+                    <div className={`w-16 h-16 mx-auto mb-4 relative group-hover:scale-110 transition-transform flex items-center justify-center rounded-full border-2 border-dashed ${category.bgClass} ${category.borderClass}`}>
+                      <span className="text-2xl">{category.icon}</span>
                     </div>
                     <h3 className="font-medium text-foreground mb-1">{category.name}</h3>
                     <p className="text-sm text-muted-foreground">{category.jobs} jobs</p>

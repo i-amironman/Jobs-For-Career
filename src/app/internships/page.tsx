@@ -2,6 +2,7 @@
 
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -14,7 +15,7 @@ export default function InternshipsPage() {
     <div className="min-h-screen">
       <Header />
       <main className="py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           {/* Hero Section */}
           <div className="text-center mb-12">
             <div className="mb-8">
@@ -138,6 +139,7 @@ export default function InternshipsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
+                  id: '1',
                   title: 'Software Engineering Intern',
                   company: 'TechCorp Solutions',
                   location: 'San Francisco, CA',
@@ -149,6 +151,7 @@ export default function InternshipsPage() {
                   skills: ['JavaScript', 'React', 'Node.js', 'Git']
                 },
                 {
+                  id: '2',
                   title: 'Marketing Intern',
                   company: 'Digital Agency Pro',
                   location: 'Remote',
@@ -160,6 +163,7 @@ export default function InternshipsPage() {
                   skills: ['Social Media', 'Content Writing', 'SEO']
                 },
                 {
+                  id: '3',
                   title: 'Data Science Intern',
                   company: 'FinanceFlow',
                   location: 'New York, NY',
@@ -171,6 +175,7 @@ export default function InternshipsPage() {
                   skills: ['Python', 'SQL', 'Machine Learning', 'Excel']
                 },
                 {
+                  id: '4',
                   title: 'Product Design Intern',
                   company: 'Design Studio Pro',
                   location: 'Los Angeles, CA',
@@ -182,6 +187,7 @@ export default function InternshipsPage() {
                   skills: ['Figma', 'Adobe XD', 'Prototyping', 'UI/UX']
                 },
                 {
+                  id: '5',
                   title: 'Business Development Intern',
                   company: 'StartupHub',
                   location: 'Remote',
@@ -193,6 +199,7 @@ export default function InternshipsPage() {
                   skills: ['Sales', 'CRM', 'Communication', 'Research']
                 },
                 {
+                  id: '6',
                   title: 'Cybersecurity Intern',
                   company: 'SecurityTech Systems',
                   location: 'Washington, DC',
@@ -248,7 +255,11 @@ export default function InternshipsPage() {
 
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-muted-foreground">{internship.posted}</span>
-                      <Button size="sm">Apply Now</Button>
+                      <Button size="sm" asChild>
+                        <Link href={`/internships/${internship.id}`}>
+                          Apply Now
+                        </Link>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>

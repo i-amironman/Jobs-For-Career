@@ -16,9 +16,10 @@
     "reset": "npm run clean && npm run setup"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "mongodb": "^7.0.0",
     "mongoose": "^9.0.0",
-    "next": "15.3.5",
+    "next": "^15.5.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

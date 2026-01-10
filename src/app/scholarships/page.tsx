@@ -2,6 +2,7 @@
 
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -14,7 +15,7 @@ export default function ScholarshipsPage() {
     <div className="min-h-screen">
       <Header />
       <main className="py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           {/* Hero Section */}
           <div className="text-center mb-12">
             <div className="mb-8">
@@ -137,6 +138,7 @@ export default function ScholarshipsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
+                  id: '1',
                   title: 'STEM Excellence Scholarship',
                   provider: 'National Science Foundation',
                   location: 'United States',
@@ -147,6 +149,7 @@ export default function ScholarshipsPage() {
                   field: 'Science, Technology, Engineering, Math'
                 },
                 {
+                  id: '2',
                   title: 'Future Leaders Scholarship',
                   provider: 'TechCorp Foundation',
                   location: 'Global',
@@ -157,6 +160,7 @@ export default function ScholarshipsPage() {
                   field: 'Computer Science, Business'
                 },
                 {
+                  id: '3',
                   title: 'Community Impact Scholarship',
                   provider: 'Education First Initiative',
                   location: 'United States',
@@ -167,6 +171,7 @@ export default function ScholarshipsPage() {
                   field: 'Education, Social Work'
                 },
                 {
+                  id: '4',
                   title: 'Innovation Grant',
                   provider: 'StartupHub Ventures',
                   location: 'Remote',
@@ -177,6 +182,7 @@ export default function ScholarshipsPage() {
                   field: 'Entrepreneurship, Innovation'
                 },
                 {
+                  id: '5',
                   title: 'Arts & Culture Scholarship',
                   provider: 'Creative Arts Foundation',
                   location: 'United States',
@@ -187,6 +193,7 @@ export default function ScholarshipsPage() {
                   field: 'Arts, Design, Music'
                 },
                 {
+                  id: '6',
                   title: 'Global Health Scholarship',
                   provider: 'World Health Organization',
                   location: 'Global',
@@ -239,7 +246,11 @@ export default function ScholarshipsPage() {
 
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-muted-foreground">Apply before deadline</span>
-                      <Button size="sm">Apply Now</Button>
+                      <Button size="sm" asChild>
+                        <Link href={`/scholarships/${scholarship.id}`}>
+                          Apply Now
+                        </Link>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
