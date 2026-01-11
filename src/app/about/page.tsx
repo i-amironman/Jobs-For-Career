@@ -244,7 +244,7 @@ export default function AboutPage() {
           </div>
 
           {/* Contact Section */}
-          <div className="mb-16">
+          <div id="get-in-touch" className="mb-16">
             <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Get in Touch</h2>
             <div className="max-w-2xl mx-auto">
               <Card className="shadow-medium">

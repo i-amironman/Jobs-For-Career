@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
+import { scholarshipListItems } from '@/lib/scholarship-data';
 
 export default function ScholarshipsPage() {
   return (
@@ -136,75 +137,8 @@ export default function ScholarshipsPage() {
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-8">Featured Scholarships</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  id: '1',
-                  title: 'STEM Excellence Scholarship',
-                  provider: 'National Science Foundation',
-                  location: 'United States',
-                  amount: '$10,000/year',
-                  deadline: 'March 15, 2024',
-                  logo: '🔬',
-                  featured: true,
-                  field: 'Science, Technology, Engineering, Math'
-                },
-                {
-                  id: '2',
-                  title: 'Future Leaders Scholarship',
-                  provider: 'TechCorp Foundation',
-                  location: 'Global',
-                  amount: '$25,000',
-                  deadline: 'April 1, 2024',
-                  logo: '🌟',
-                  featured: true,
-                  field: 'Computer Science, Business'
-                },
-                {
-                  id: '3',
-                  title: 'Community Impact Scholarship',
-                  provider: 'Education First Initiative',
-                  location: 'United States',
-                  amount: '$5,000',
-                  deadline: 'March 30, 2024',
-                  logo: '🎓',
-                  featured: true,
-                  field: 'Education, Social Work'
-                },
-                {
-                  id: '4',
-                  title: 'Innovation Grant',
-                  provider: 'StartupHub Ventures',
-                  location: 'Remote',
-                  amount: '$15,000',
-                  deadline: 'April 15, 2024',
-                  logo: '🚀',
-                  featured: true,
-                  field: 'Entrepreneurship, Innovation'
-                },
-                {
-                  id: '5',
-                  title: 'Arts & Culture Scholarship',
-                  provider: 'Creative Arts Foundation',
-                  location: 'United States',
-                  amount: '$8,000',
-                  deadline: 'March 25, 2024',
-                  logo: '🎨',
-                  featured: true,
-                  field: 'Arts, Design, Music'
-                },
-                {
-                  id: '6',
-                  title: 'Global Health Scholarship',
-                  provider: 'World Health Organization',
-                  location: 'Global',
-                  amount: '$20,000',
-                  deadline: 'May 1, 2024',
-                  logo: '🏥',
-                  featured: true,
-                  field: 'Medicine, Public Health'
-                },
-              ].map((scholarship, index) => (
-                <Card key={index} className="hover:shadow-medium transition-shadow cursor-pointer">
+              {scholarshipListItems.map((scholarship) => (
+                <Card key={scholarship.id} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">

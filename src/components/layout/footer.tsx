@@ -50,7 +50,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/companies" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#top-companies" className="text-muted-foreground hover:text-primary transition-colors">
                   Top Companies
                 </Link>
               </li>
@@ -62,11 +62,6 @@ const Footer = () => {
               <li>
                 <Link href="/remote-jobs" className="text-muted-foreground hover:text-primary transition-colors">
                   Remote Jobs
-                </Link>
-              </li>
-              <li>
-                <Link href="/part-time" className="text-muted-foreground hover:text-primary transition-colors">
-                  Part Time Jobs
                 </Link>
               </li>
             </ul>
@@ -96,11 +91,6 @@ const Footer = () => {
                   Salary Guide
                 </Link>
               </li>
-              <li>
-                <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">
-                  Blog
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -109,12 +99,7 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground">Support</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/help" className="text-muted-foreground hover:text-primary transition-colors">
-                  Help Center
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/about#get-in-touch" className="text-muted-foreground hover:text-primary transition-colors">
                   Contact Us
                 </Link>
               </li>
