@@ -3,10 +3,6 @@
 		query XTransformPort=*
 	}
 
-
-
-
-	
 	handle @transform_port_query {
 		reverse_proxy localhost:{query.XTransformPort} {
 			header_up Host {host}
