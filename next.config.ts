@@ -12,10 +12,8 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
-  // Performance optimizations
-  // experimental: {
-  //   optimizeCss: true,
-  // },
+  // Fix for React Server Components and webpack issues
+  serverExternalPackages: [],
   // Cache optimization
   async headers() {
     return [
