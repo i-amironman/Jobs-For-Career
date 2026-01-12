@@ -1,12 +1,39 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState(2024);
+  const router = useRouter();
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleTopCompaniesClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    // Check if we're on the home page
+    if (window.location.pathname === '/') {
+      // If on home page, scroll to the section
+      const element = document.getElementById('top-companies');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If not on home page, navigate to home page with hash
+      router.push('/#top-companies');
+    }
+  };
 
   return (
     <footer className="bg-secondary/50 border-t">
@@ -50,18 +77,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/#top-companies" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  href="/#top-companies" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  onClick={handleTopCompaniesClick}
+                >
                   Top Companies
                 </Link>
               </li>
               <li>
                 <Link href="/internships" className="text-muted-foreground hover:text-primary transition-colors">
                   Internships
-                </Link>
-              </li>
-              <li>
-                <Link href="/remote-jobs" className="text-muted-foreground hover:text-primary transition-colors">
-                  Remote Jobs
                 </Link>
               </li>
             </ul>
@@ -99,7 +125,7 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground">Support</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about#get-in-touch" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -167,7 +193,7 @@ const Footer = () => {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={scrollToTop}
               className="flex items-center space-x-2"
             >
               <Icons.ArrowRight className="h-4 w-4 -rotate-90" />
