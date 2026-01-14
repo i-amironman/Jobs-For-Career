@@ -8,12 +8,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  // Remove ESLint error ignoring for better code quality
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
-  // Fix for React Server Components and webpack issues
-  serverExternalPackages: [],
   // Cache optimization
   async headers() {
     return [
