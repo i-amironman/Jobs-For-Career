@@ -11,16 +11,15 @@ import TestimonialsSection from '@/components/testimonials-section';
 
 export default function Home() {
   useEffect(() => {
-    // Handle hash navigation on page load
-    const hash = window.location.hash;
-    if (hash === '#top-companies') {
-      // Small delay to ensure the page is fully rendered
-      setTimeout(() => {
+    // Simple hash navigation without complex logic
+    if (typeof window !== 'undefined' && window.location.hash === '#top-companies') {
+      const timer = setTimeout(() => {
         const element = document.getElementById('top-companies');
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100);
+      return () => clearTimeout(timer);
     }
   }, []);
 

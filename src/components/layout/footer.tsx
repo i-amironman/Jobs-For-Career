@@ -5,15 +5,12 @@ import { useRouter } from 'next/navigation';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useEffect, useState } from 'react';
 
 const Footer = () => {
-  const [currentYear, setCurrentYear] = useState(2024);
   const router = useRouter();
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear());
-  }, []);
+  
+  // Use static year to avoid hydration issues
+  const currentYear = 2024;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
