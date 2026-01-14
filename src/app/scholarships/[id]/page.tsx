@@ -85,7 +85,7 @@ export default async function ScholarshipPage({ params }: ScholarshipPageProps) 
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Requirements</h2>
                     <ul className="space-y-3">
-                      {scholarship.requirements.map((req, index) => (
+                      {(scholarship.requirements || []).map((req, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{req}</span>
@@ -100,7 +100,7 @@ export default async function ScholarshipPage({ params }: ScholarshipPageProps) 
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Scholarship Responsibilities</h2>
                     <ul className="space-y-3">
-                      {scholarship.responsibilities.map((resp, index) => (
+                      {(scholarship.responsibilities || []).map((resp, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.Star className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{resp}</span>
@@ -115,7 +115,7 @@ export default async function ScholarshipPage({ params }: ScholarshipPageProps) 
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Benefits & Perks</h2>
                     <ul className="space-y-3">
-                      {scholarship.benefits.map((benefit, index) => (
+                      {(scholarship.benefits || []).map((benefit, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.Award className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{benefit}</span>
@@ -130,7 +130,7 @@ export default async function ScholarshipPage({ params }: ScholarshipPageProps) 
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Application Process</h2>
                     <div className="space-y-3">
-                      {scholarship.applicationProcess.map((step, index) => (
+                      {(scholarship.applicationProcess || []).map((step, index) => (
                         <div key={index} className="flex items-center space-x-3">
                           <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary">
                             {index + 1}
@@ -175,7 +175,7 @@ export default async function ScholarshipPage({ params }: ScholarshipPageProps) 
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold text-foreground mb-4">Eligibility Criteria</h3>
                     <ul className="space-y-2">
-                      {scholarship.eligibility.map((criteria, index) => (
+                      {(scholarship.eligibility || []).map((criteria, index) => (
                         <li key={index} className="flex items-start space-x-2">
                           <Icons.Shield className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-sm text-muted-foreground">{criteria}</span>

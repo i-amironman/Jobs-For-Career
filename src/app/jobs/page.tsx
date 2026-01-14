@@ -138,20 +138,20 @@ export default function JobsPage() {
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-8">Featured Jobs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {jobListItems.map((job) => (
-                <Card key={job.id} className="hover:shadow-medium transition-shadow cursor-pointer">
+              {(jobListItems || []).map((job, index) => (
+                <Card key={job?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                          {job.logo}
+                          {job?.logo || '🏢'}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{job.title}</h3>
-                          <p className="text-sm text-muted-foreground">{job.company}</p>
+                          <h3 className="font-semibold text-foreground">{job?.title || 'Job Title'}</h3>
+                          <p className="text-sm text-muted-foreground">{job?.company || 'Company'}</p>
                         </div>
                       </div>
-                      {job.featured && (
+                      {job?.featured && (
                         <Badge variant="secondary" className="bg-primary/10 text-primary">
                           Featured
                         </Badge>
@@ -161,30 +161,30 @@ export default function JobsPage() {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.MapPin className="h-4 w-4 mr-2" />
-                        {job.location}
+                        {job?.location || 'Location'}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.Briefcase className="h-4 w-4 mr-2" />
-                        {job.type}
+                        {job?.type || 'Job Type'}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <span className="h-4 w-4 mr-2">$</span>
-                        {job.salary}
+                        {job?.salary || 'Salary'}
                       </div>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {job.skills.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} variant="outline" className="text-xs">
-                          {skill}
+                      {(job?.skills || []).slice(0, 4).map((skill, skillIndex) => (
+                        <Badge key={`${skill}-${skillIndex}`} variant="outline" className="text-xs">
+                          {skill || 'Skill'}
                         </Badge>
                       ))}
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">{job.posted}</span>
+                      <span className="text-xs text-muted-foreground">{job?.posted || 'Recently'}</span>
                       <Button size="sm" asChild>
-                        <Link href={`/jobs/${job.id}`}>
+                        <Link href={`/jobs/${job?.id || ''}`}>
                           Apply Now
                         </Link>
                       </Button>
@@ -218,13 +218,13 @@ export default function JobsPage() {
                 { name: 'Education', icon: '🎓', jobs: 1298, bgClass: 'bg-cyan-50', borderClass: 'border-cyan-300' },
                 { name: 'Customer Support', icon: '🎧', jobs: 987, bgClass: 'bg-lime-50', borderClass: 'border-lime-300' },
               ].map((category, index) => (
-                <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer group">
+                <Card key={`category-${index}`} className="hover:shadow-soft transition-shadow cursor-pointer group">
                   <CardContent className="p-6 text-center">
-                    <div className={`w-16 h-16 mx-auto mb-4 relative group-hover:scale-110 transition-transform flex items-center justify-center rounded-full border-2 border-dashed ${category.bgClass} ${category.borderClass}`}>
-                      <span className="text-2xl">{category.icon}</span>
+                    <div className={`w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform flex items-center justify-center rounded-full border-2 border-dashed ${category?.bgClass || 'bg-gray-50'} ${category?.borderClass || 'border-gray-300'}`}>
+                      <span className="text-2xl">{category?.icon || '📂'}</span>
                     </div>
-                    <h3 className="font-medium text-foreground mb-1">{category.name}</h3>
-                    <p className="text-sm text-muted-foreground">{category.jobs} jobs</p>
+                    <h3 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h3>
+                    <p className="text-sm text-muted-foreground">{category?.jobs || 0} jobs</p>
                   </CardContent>
                 </Card>
               ))}

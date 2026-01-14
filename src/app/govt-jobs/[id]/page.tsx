@@ -85,7 +85,7 @@ export default async function GovtJobPage({ params }: GovtJobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Requirements</h2>
                     <ul className="space-y-3">
-                      {job.requirements.map((req, index) => (
+                      {(job.requirements || []).map((req, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{req}</span>
@@ -100,7 +100,7 @@ export default async function GovtJobPage({ params }: GovtJobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Responsibilities</h2>
                     <ul className="space-y-3">
-                      {job.responsibilities.map((resp, index) => (
+                      {(job.responsibilities || []).map((resp, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.Briefcase className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{resp}</span>
@@ -115,7 +115,7 @@ export default async function GovtJobPage({ params }: GovtJobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Benefits & Perks</h2>
                     <ul className="space-y-3">
-                      {job.benefits.map((benefit, index) => (
+                      {(job.benefits || []).map((benefit, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.Heart className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{benefit}</span>
@@ -130,7 +130,7 @@ export default async function GovtJobPage({ params }: GovtJobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Application Process</h2>
                     <div className="space-y-3">
-                      {job.applicationProcess.map((step, index) => (
+                      {(job.applicationProcess || []).map((step, index) => (
                         <div key={index} className="flex items-center space-x-3">
                           <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary">
                             {index + 1}
@@ -176,7 +176,7 @@ export default async function GovtJobPage({ params }: GovtJobPageProps) {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold text-foreground mb-4">Eligibility Criteria</h3>
                     <ul className="space-y-2">
-                      {job.eligibility.map((criteria, index) => (
+                      {(job.eligibility || []).map((criteria, index) => (
                         <li key={index} className="flex items-start space-x-2">
                           <Icons.Shield className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-sm text-muted-foreground">{criteria}</span>

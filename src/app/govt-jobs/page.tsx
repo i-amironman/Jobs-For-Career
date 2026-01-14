@@ -186,20 +186,20 @@ export default function GovtJobsPage() {
                   featured: true,
                   skills: ['HR Management', 'Recruitment', 'Training', 'Compliance']
                 }
-              ].map((job) => (
-                <Card key={job.id} className="hover:shadow-medium transition-shadow cursor-pointer">
+              ].map((job, index) => (
+                <Card key={job?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                          {job.logo}
+                          {job?.logo || '🏛️'}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{job.title}</h3>
-                          <p className="text-sm text-muted-foreground">{job.agency}</p>
+                          <h3 className="font-semibold text-foreground">{job?.title || 'Job Title'}</h3>
+                          <p className="text-sm text-muted-foreground">{job?.agency || 'Agency'}</p>
                         </div>
                       </div>
-                      {job.featured && (
+                      {job?.featured && (
                         <Badge variant="secondary" className="bg-primary/10 text-primary">
                           Featured
                         </Badge>
@@ -208,21 +208,21 @@ export default function GovtJobsPage() {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.MapPin className="h-4 w-4 mr-2" />
-                        {job.location}
+                        {job?.location || 'Location'}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.Briefcase className="h-4 w-4 mr-2" />
-                        {job.type}
+                        {job?.type || 'Job Type'}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.DollarSign className="h-4 w-4 mr-2" />
-                        {job.salary}
+                        {job?.salary || 'Salary'}
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {job.skills.map((skill, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
-                          {skill}
+                      {(job?.skills || []).slice(0, 4).map((skill, skillIndex) => (
+                        <Badge key={`${skill}-${skillIndex}`} variant="outline" className="text-xs">
+                          {skill || 'Skill'}
                         </Badge>
                       ))}
                     </div>
@@ -249,16 +249,16 @@ export default function GovtJobsPage() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {categories.map((category) => (
-                <Link key={category.name} href={`/govt-jobs/department/${category.name.toLowerCase()}`}>
+              {(categories || []).map((category, index) => (
+                <Link key={category?.name || index} href={`/govt-jobs/department/${category?.name?.toLowerCase() || 'unknown'}`}>
                   <Card className="hover:shadow-medium transition-shadow cursor-pointer text-center group">
                     <CardContent className="p-6">
-                      <div className="text-3xl mb-3">{category.icon}</div>
+                      <div className="text-3xl mb-3">{category?.icon || '📂'}</div>
                       <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {category.name}
+                        {category?.name || 'Category'}
                       </h3>
                       <p className="text-sm text-muted-foreground mt-1">
-                        {category.count} jobs
+                        {category?.count || 0} jobs
                       </p>
                     </CardContent>
                   </Card>

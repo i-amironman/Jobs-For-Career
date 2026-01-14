@@ -85,7 +85,7 @@ export default async function JobPage({ params }: JobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Key Responsibilities</h2>
                     <ul className="space-y-2">
-                      {job.responsibilities.map((responsibility, index) => (
+                      {(job.responsibilities || []).map((responsibility, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{responsibility}</span>
@@ -100,7 +100,7 @@ export default async function JobPage({ params }: JobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Requirements</h2>
                     <ul className="space-y-2">
-                      {job.requirements.map((requirement, index) => (
+                      {(job.requirements || []).map((requirement, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{requirement}</span>
@@ -115,7 +115,7 @@ export default async function JobPage({ params }: JobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Required Skills</h2>
                     <div className="flex flex-wrap gap-2">
-                      {job.skills.map((skill, index) => (
+                      {(job.skills || []).map((skill, index) => (
                         <Badge key={index} variant="outline">
                           {skill}
                         </Badge>
@@ -129,7 +129,7 @@ export default async function JobPage({ params }: JobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Benefits & Perks</h2>
                     <ul className="space-y-2">
-                      {job.benefits.map((benefit, index) => (
+                      {(job.benefits || []).map((benefit, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.Star className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{benefit}</span>
@@ -144,7 +144,7 @@ export default async function JobPage({ params }: JobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Eligibility</h2>
                     <ul className="space-y-2">
-                      {job.eligibility.map((item, index) => (
+                      {(job.eligibility || []).map((item, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{item}</span>
@@ -159,7 +159,7 @@ export default async function JobPage({ params }: JobPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Application Process</h2>
                     <div className="space-y-3">
-                      {job.applicationProcess.map((step, index) => (
+                      {(job.applicationProcess || []).map((step, index) => (
                         <div key={index} className="flex items-center space-x-3">
                           <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary">
                             {index + 1}
@@ -180,15 +180,15 @@ export default async function JobPage({ params }: JobPageProps) {
                     <h3 className="text-xl font-bold text-foreground mb-4">Company Information</h3>
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-semibold text-foreground">{job.companyInfo.name}</h4>
-                        <p className="text-sm text-muted-foreground">{job.companyInfo.industry}</p>
-                        <p className="text-sm text-muted-foreground">{job.companyInfo.size}</p>
-                        <p className="text-sm text-muted-foreground">Founded: {job.companyInfo.founded}</p>
+                        <h4 className="font-semibold text-foreground">{job.companyInfo?.name || 'Company'}</h4>
+                        <p className="text-sm text-muted-foreground">{job.companyInfo?.industry || 'Industry'}</p>
+                        <p className="text-sm text-muted-foreground">{job.companyInfo?.size || 'Size'}</p>
+                        <p className="text-sm text-muted-foreground">Founded: {job.companyInfo?.founded || 'N/A'}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground mb-2">{job.companyInfo.description}</p>
+                        <p className="text-sm text-muted-foreground mb-2">{job.companyInfo?.description || 'Company description'}</p>
                         <a 
-                          href={job.companyInfo.website} 
+                          href={job.companyInfo?.website || '#'} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-primary hover:underline text-sm"
@@ -199,7 +199,7 @@ export default async function JobPage({ params }: JobPageProps) {
                       <div>
                         <p className="text-sm text-muted-foreground">
                           <Icons.MapPin className="h-4 w-4 inline mr-1" />
-                          {job.companyInfo.headquarters}
+                          {job.companyInfo?.headquarters || 'Location'}
                         </p>
                       </div>
                     </div>

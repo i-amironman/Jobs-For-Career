@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Mail, Phone, Shield, Clock, AlertCircle, CheckCircle, Users, Globe, FileText, Scale, Gavel } from '@/components/ui/icons';
+import { Icons } from '@/components/ui/icons';
 
 export const metadata: Metadata = {
   title: 'Terms of Service - JobsForCareer',
@@ -21,23 +20,19 @@ export const metadata: Metadata = {
 };
 
 export default function TermsOfService() {
-  const lastUpdated = new Date().toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  });
+  const lastUpdated = "December 10, 2024";
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-purple-50 to-pink-50">
+        <section className="py-16 bg-gradient-to-br from-secondary/30 to-primary/10">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="text-center max-w-4xl mx-auto">
               <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                <div className="w-full h-full rounded-full bg-purple-100 flex items-center justify-center">
-                  <Gavel className="h-10 w-10 text-purple-600" />
+                <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center">
+                  <Icons.Gavel className="h-10 w-10 text-primary" />
                 </div>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -47,7 +42,7 @@ export default function TermsOfService() {
                 Please read these terms carefully before using JobsForCareer job search platform.
               </p>
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-                <Clock className="h-4 w-4" />
+                <Icons.Clock className="h-4 w-4" />
                 <span>Last updated: {lastUpdated}</span>
               </div>
             </div>
@@ -62,10 +57,10 @@ export default function TermsOfService() {
               {/* Introduction */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <FileText className="h-5 w-5" />
+                  <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <Icons.FileText className="h-5 w-5" />
                     Agreement to Terms
-                  </CardTitle>
+                  </h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">
@@ -84,7 +79,7 @@ export default function TermsOfService() {
               {/* Acceptance of Terms */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Acceptance of Terms</CardTitle>
+                  <h3 className="text-lg font-semibold text-gray-900">Acceptance of Terms</h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">
@@ -92,19 +87,19 @@ export default function TermsOfService() {
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <Icons.CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                       <span>Be at least 16 years of age or have parental consent</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <Icons.CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                       <span>Provide accurate and truthful information in your profile</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <Icons.CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                       <span>Use the platform for legitimate job search purposes only</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <Icons.CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                       <span>Comply with all applicable laws and regulations</span>
                     </li>
                   </ul>
@@ -114,10 +109,10 @@ export default function TermsOfService() {
               {/* User Responsibilities */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Users className="h-5 w-5" />
+                  <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <Icons.Users className="h-5 w-5" />
                     User Responsibilities
-                  </CardTitle>
+                  </h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">
@@ -167,7 +162,7 @@ export default function TermsOfService() {
               {/* Prohibited Activities */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Prohibited Activities</CardTitle>
+                  <h3 className="text-lg font-semibold text-gray-900">Prohibited Activities</h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">
@@ -196,7 +191,7 @@ export default function TermsOfService() {
                       <h4 className="font-semibold text-gray-900">System Abuse</h4>
                       <ul className="space-y-2 text-sm text-gray-700">
                         <li>• Hacking or unauthorized access</li>
-                       >• DDoS attacks or disruption</li>
+                        <li>• DDoS attacks or disruption</li>
                         <li>• Scraping or data harvesting</li>
                         <li>• Circumventing security measures</li>
                       </ul>
@@ -217,7 +212,7 @@ export default function TermsOfService() {
               {/* Intellectual Property */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Intellectual Property Rights</CardTitle>
+                  <h3 className="text-lg font-semibold text-gray-900">Intellectual Property Rights</h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">
@@ -225,21 +220,21 @@ export default function TermsOfService() {
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <Icons.CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4 className="font-semibold text-gray-900">Platform Content</h4>
                         <p className="text-sm text-gray-600">Job listings, descriptions, and original content</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <Icons.CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4 className="font-semibold text-gray-900">User Content</h4>
                         <p className="text-sm text-gray-600">Resumes, profiles, and application materials</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <Icons.CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4 className="font-semibold text-gray-900">Third-Party Content</h4>
                         <p className="text-sm text-gray-600">Employer job postings and company information</p>
@@ -252,10 +247,10 @@ export default function TermsOfService() {
               {/* Service Availability */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Scale className="h-5 w-5" />
+                  <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <Icons.Scale className="h-5 w-5" />
                     Service Availability & Modifications
-                  </CardTitle>
+                  </h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">
@@ -263,21 +258,21 @@ export default function TermsOfService() {
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
+                      <Icons.AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
                       <div>
-                        <h4 className="Service Availability</h4>
+                        <h4 className="font-semibold text-gray-900">Service Availability</h4>
                         <p className="text-sm text-gray-600">We may experience downtime for maintenance or technical issues</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
+                      <Icons.AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4>Content Changes</h4>
                         <p className="text-sm text-gray-600">Job listings may be removed or modified without notice</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
+                      <Icons.AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4>Service Modifications</h4>
                         <p className="text-sm text-gray-600">Features and pricing may change over time</p>
@@ -290,7 +285,7 @@ export default function TermsOfService() {
               {/* Limitation of Liability */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Limitation of Liability</CardTitle>
+                  <h3 className="text-lg font-semibold text-gray-900">Limitation of Liability</h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">
@@ -298,21 +293,21 @@ export default function TermsOfService() {
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                      <Icons.AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4>Indirect Damages</h4>
                         <p className="text-sm text-gray-600">Loss of profits, data, or business opportunities</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                      <Icons.AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4>Third-Party Actions</h4>
                         <p className="text-sm text-gray-600">Employer or user conduct beyond our control</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                      <Icons.AlertCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4>Service Interruptions</h4>
                         <p className="text-sm text-gray-600">Platform downtime or technical issues</p>
@@ -325,10 +320,10 @@ export default function TermsOfService() {
               {/* Contact Information */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Mail className="h-5 w-5" />
+                  <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <Icons.Mail className="h-5 w-5" />
                     Contact Information
-                  </CardTitle>
+                  </h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">
@@ -338,14 +333,14 @@ export default function TermsOfService() {
                     <div className="space-y-3">
                       <h4 className="font-semibold text-gray-900">Email</h4>
                       <div className="flex items-center gap-2 text-gray-700">
-                        <Mail className="h-4 w-4" />
+                        <Icons.Mail className="h-4 w-4" />
                         <span>legal@jobsforcareer.com</span>
                       </div>
                     </div>
                     <div className="space-y-3">
                       <h4 className="font-semibold text-gray-900">Phone</h4>
                       <div className="flex items-center gap-2 text-gray-700">
-                        <Phone className="h-4 w-4" />
+                        <Icons.Phone className="h-4 w-4" />
                         <span>+1 (555) 123-4567</span>
                       </div>
                     </div>
@@ -361,7 +356,7 @@ export default function TermsOfService() {
               {/* Governing Law */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Governing Law and Disputes</CardTitle>
+                  <h3 className="text-lg font-semibold text-gray-900">Governing Law and Disputes</h3>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700 leading-relaxed">

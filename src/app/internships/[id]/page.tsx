@@ -88,7 +88,7 @@ export default async function InternshipPage({ params }: InternshipPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Requirements</h2>
                     <ul className="space-y-3">
-                      {internship.requirements.map((req, index) => (
+                      {(internship.requirements || []).map((req, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{req}</span>
@@ -103,7 +103,7 @@ export default async function InternshipPage({ params }: InternshipPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Responsibilities</h2>
                     <ul className="space-y-3">
-                      {internship.responsibilities.map((resp, index) => (
+                      {(internship.responsibilities || []).map((resp, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.Briefcase className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{resp}</span>
@@ -118,7 +118,7 @@ export default async function InternshipPage({ params }: InternshipPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Benefits & Perks</h2>
                     <ul className="space-y-3">
-                      {internship.benefits.map((benefit, index) => (
+                      {(internship.benefits || []).map((benefit, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <Icons.Star className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground">{benefit}</span>
@@ -133,7 +133,7 @@ export default async function InternshipPage({ params }: InternshipPageProps) {
                   <CardContent className="p-6">
                     <h2 className="text-2xl font-bold text-foreground mb-4">Application Process</h2>
                     <div className="space-y-3">
-                      {internship.applicationProcess.map((step, index) => (
+                      {(internship.applicationProcess || []).map((step, index) => (
                         <div key={index} className="flex items-center space-x-3">
                           <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary">
                             {index + 1}
@@ -154,15 +154,15 @@ export default async function InternshipPage({ params }: InternshipPageProps) {
                     <h3 className="text-xl font-bold text-foreground mb-4">Company Information</h3>
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-semibold text-foreground">{internship.companyInfo.name}</h4>
-                        <p className="text-sm text-muted-foreground">{internship.companyInfo.industry}</p>
-                        <p className="text-sm text-muted-foreground">{internship.companyInfo.size}</p>
-                        <p className="text-sm text-muted-foreground">Founded: {internship.companyInfo.founded}</p>
+                        <h4 className="font-semibold text-foreground">{internship.companyInfo?.name || 'Company'}</h4>
+                        <p className="text-sm text-muted-foreground">{internship.companyInfo?.industry || 'Industry'}</p>
+                        <p className="text-sm text-muted-foreground">{internship.companyInfo?.size || 'Size'}</p>
+                        <p className="text-sm text-muted-foreground">Founded: {internship.companyInfo?.founded || 'N/A'}</p>
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground mb-2">{internship.companyInfo.description}</p>
+                        <p className="text-sm text-muted-foreground mb-2">{internship.companyInfo?.description || 'Company description'}</p>
                         <a 
-                          href={internship.companyInfo.website} 
+                          href={internship.companyInfo?.website || '#'} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-primary hover:underline text-sm"
@@ -179,7 +179,7 @@ export default async function InternshipPage({ params }: InternshipPageProps) {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold text-foreground mb-4">Eligibility Criteria</h3>
                     <ul className="space-y-2">
-                      {internship.eligibility.map((criteria, index) => (
+                      {(internship.eligibility || []).map((criteria, index) => (
                         <li key={index} className="flex items-start space-x-2">
                           <Icons.Shield className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                           <span className="text-sm text-muted-foreground">{criteria}</span>

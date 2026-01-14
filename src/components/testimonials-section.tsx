@@ -80,16 +80,21 @@ const TestimonialsSection = () => {
   ];
 
   const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setCurrentIndex((prev) => (prev + 1) % Math.max(testimonials?.length || 1, 1));
   };
 
   const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex((prev) => (prev - 1 + Math.max(testimonials?.length || 1, 1)) % Math.max(testimonials?.length || 1, 1));
   };
 
   const goToTestimonial = (index: number) => {
-    setCurrentIndex(index);
+    if (index >= 0 && index < (testimonials?.length || 0)) {
+      setCurrentIndex(index);
+    }
   };
+
+  // Ensure currentIndex is always valid
+  const safeCurrentIndex = Math.min(currentIndex, Math.max((testimonials?.length || 1) - 1, 0));
 
   return (
     <section className="py-20 bg-background">
@@ -106,10 +111,10 @@ const TestimonialsSection = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {stats.map((stat, index) => (
+          {(stats || []).map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div className="text-3xl font-bold text-primary mb-2">{stat?.value || ''}</div>
+              <div className="text-sm text-muted-foreground">{stat?.label || ''}</div>
             </div>
           ))}
         </div>
@@ -124,26 +129,26 @@ const TestimonialsSection = () => {
               
               <div className="text-center mb-8">
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
-                  "{testimonials[currentIndex].testimonial}"
+                  "{testimonials[safeCurrentIndex]?.testimonial || ''}"
                 </p>
                 
                 <div className="flex items-center justify-center mb-4">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                  {Array.from({ length: testimonials[safeCurrentIndex]?.rating || 0 }).map((_, i) => (
                     <Icons.Star key={i} className="h-5 w-5 text-yellow-500 fill-current" />
                   ))}
                 </div>
                 
                 <Badge variant="secondary" className="bg-primary/10 text-primary">
-                  {testimonials[currentIndex].achievement}
+                  {testimonials[safeCurrentIndex]?.achievement || ''}
                 </Badge>
               </div>
 
               <div className="flex items-center justify-center space-x-4">
-                <div className="text-4xl">{testimonials[currentIndex].avatar}</div>
+                <div className="text-4xl">{testimonials[safeCurrentIndex]?.avatar || '👤'}</div>
                 <div className="text-center">
-                  <h4 className="font-semibold text-foreground">{testimonials[currentIndex].name}</h4>
-                  <p className="text-sm text-muted-foreground">{testimonials[currentIndex].role}</p>
-                  <p className="text-sm text-primary">{testimonials[currentIndex].company}</p>
+                  <h4 className="font-semibold text-foreground">{testimonials[safeCurrentIndex]?.name || 'Anonymous'}</h4>
+                  <p className="text-sm text-muted-foreground">{testimonials[safeCurrentIndex]?.role || 'Professional'}</p>
+                  <p className="text-sm text-primary">{testimonials[safeCurrentIndex]?.company || 'Company'}</p>
                 </div>
               </div>
 
@@ -164,7 +169,7 @@ const TestimonialsSection = () => {
                       key={index}
                       onClick={() => goToTestimonial(index)}
                       className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentIndex ? 'bg-primary' : 'bg-muted-foreground/30'
+                        index === safeCurrentIndex ? 'bg-primary' : 'bg-muted-foreground/30'
                       }`}
                     />
                   ))}
@@ -185,29 +190,29 @@ const TestimonialsSection = () => {
 
         {/* Additional Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.slice(0, 3).map((testimonial, index) => (
-            <Card key={testimonial.id} className="hover:shadow-soft transition-shadow">
+          {(testimonials || []).slice(0, 3).map((testimonial, index) => (
+            <Card key={testimonial?.id || index} className="hover:shadow-soft transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
-                  <div className="text-3xl mr-3">{testimonial.avatar}</div>
+                  <div className="text-3xl mr-3">{testimonial?.avatar || '👤'}</div>
                   <div>
-                    <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <h4 className="font-semibold text-foreground">{testimonial?.name || 'Anonymous'}</h4>
+                    <p className="text-sm text-muted-foreground">{testimonial?.role || 'Professional'}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
+                  {Array.from({ length: testimonial?.rating || 0 }).map((_, i) => (
                     <Icons.Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
                   ))}
                 </div>
                 
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                  "{testimonial.testimonial.substring(0, 100)}..."
+                  "{testimonial?.testimonial?.substring(0, 100) || ''}..."
                 </p>
                 
                 <Badge variant="outline" className="text-xs">
-                  {testimonial.achievement}
+                  {testimonial?.achievement || ''}
                 </Badge>
               </CardContent>
             </Card>

@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Mail, Phone, Shield, Clock, AlertCircle, CheckCircle, Users, Globe, FileText, HelpCircle, Search, Building2, UserPlus } from '@/components/ui/icons';
+import { Icons } from '@/components/ui/icons';
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions - JobsForCareer',
@@ -35,7 +34,7 @@ export default function FAQ() {
           a: "Yes! JobsForCareer is completely free for students and freshers to search for jobs, create profiles, and apply to positions. We believe everyone should have equal access to career opportunities."
         },
         {
-          "q: "What types of jobs are available on JobsForCareer?",
+          q: "What types of jobs are available on JobsForCareer?",
           a: "We offer a wide range of opportunities including entry-level positions, internships, part-time jobs, remote work, and government jobs across various industries like technology, healthcare, education, finance, and more."
         },
         {
@@ -101,7 +100,7 @@ export default function FAQ() {
           a: "Employers can create an account and post job listings through our employer dashboard. Contact our sales team at sales@jobsforcareer.com for more information about employer services."
         },
         {
-          "q: "How do employers find candidates?",
+          q: "How do employers find candidates?",
           a: "Employers can search our database of qualified students and freshers using filters like education, skills, location, and experience level. They can also review candidate profiles and contact applicants directly."
         },
         {
@@ -146,7 +145,7 @@ export default function FAQ() {
         },
         {
           q: "Is JobsForCareer mobile-friendly?",
-          "a: "Yes! Our platform is fully responsive and works great on smartphones and tablets. You can search, apply, and manage your account from any device."
+          a: "Yes! Our platform is fully responsive and works great on smartphones and tablets. You can search, apply, and manage your account from any device."
         },
         {
           q: "I'm having trouble logging in. What should I do?",
@@ -168,7 +167,7 @@ export default function FAQ() {
         },
         {
           q: "Should I apply to jobs I'm not fully qualified for?",
-          "a: "If you meet 60-70% of the requirements, go for it! Highlight your transferable skills and enthusiasm. Many employers value potential over perfect qualifications."
+          a: "If you meet 60-70% of the requirements, go for it! Highlight your transferable skills and enthusiasm. Many employers value potential over perfect qualifications."
         },
         {
           q: "How important are internships?",
@@ -176,7 +175,7 @@ export default function FAQ() {
         },
         {
           q: "What skills are most in demand?",
-          "a: "Technical skills like programming, data analysis, and digital marketing are highly sought after. Soft skills like communication, teamwork, and problem-solving are equally important."
+          a: "Technical skills like programming, data analysis, and digital marketing are highly sought after. Soft skills like communication, teamwork, and problem-solving are equally important."
         }
       ]
     }
@@ -187,12 +186,12 @@ export default function FAQ() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-green-50 to-teal-50">
+        <section className="py-16 bg-gradient-to-br from-secondary/30 to-primary/10">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="text-center max-w-4xl mx-auto">
               <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                <div className="w-full h-full rounded-full bg-green-100 flex items-center justify-center">
-                  <HelpCircle className="h-10 w-10 text-green-600" />
+                <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center">
+                  <Icons.HelpCircle className="h-10 w-10 text-primary" />
                 </div>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -202,7 +201,7 @@ export default function FAQ() {
                 Find answers to common questions about JobsForCareer and get the help you need to succeed in your job search.
               </p>
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-                <Search className="h-4 w-4" />
+                <Icons.Search className="h-4 w-4" />
                 <span>Comprehensive FAQ for job seekers and employers</span>
               </div>
             </div>
@@ -225,10 +224,10 @@ export default function FAQ() {
               {faqCategories.map((category, categoryIndex) => (
                 <Card key={categoryIndex} className="mb-8">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
                       <span className="text-2xl">{category.icon}</span>
                       {category.title}
-                    </CardTitle>
+                    </h3>
                   </CardHeader>
                   <CardContent>
                     <Accordion type="single" className="w-full">
@@ -236,7 +235,7 @@ export default function FAQ() {
                         <AccordionItem key={index} value={`item-${categoryIndex}-${index}`}>
                           <AccordionTrigger className="text-left">
                             <div className="flex items-start gap-3">
-                              <HelpCircle className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                              <Icons.HelpCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                               <div className="flex-1">
                                 <h4 className="font-semibold text-gray-900">{faq.q}</h4>
                               </div>
@@ -270,14 +269,14 @@ export default function FAQ() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Card>
                   <CardContent className="p-6 text-center">
-                    <Mail className="h-12 w-12 mx-auto mb-4 text-blue-500" />
+                    <Icons.Mail className="h-12 w-12 mx-auto mb-4 text-primary" />
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Support</h3>
                     <p className="text-sm text-gray-600 mb-4">
                       Get help via email within 24 hours
                     </p>
                     <a 
                       href="mailto:support@jobsforcareer.com" 
-                      className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                      className="text-primary hover:text-primary/80 text-sm font-medium"
                     >
                       support@jobsforcareer.com
                     </a>
@@ -285,14 +284,14 @@ export default function FAQ() {
                 </Card>
                 <Card>
                   <CardContent className="p-6 text-center">
-                    <Phone className="h-12 w-12 mx-auto mb-4 text-green-500" />
-                    <h3 className="text className="font-semibold text-gray-900 mb-2">Phone Support</h3>
+                    <Icons.Phone className="h-12 w-12 mx-auto mb-4 text-primary" />
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Phone Support</h3>
                     <p className="text-sm text-gray-600 mb-4">
                       Available Mon-Fri, 9 AM-5 PM EST
                     </p>
                     <a 
                       href="tel:+15551234567" 
-                      className="text-green-600 hover:text-green-700 text-sm font-medium"
+                      className="text-primary hover:text-primary/80 text-sm font-medium"
                     >
                       +1 (555) 123-4567
                     </a>
@@ -300,14 +299,14 @@ export default function FAQ() {
                 </Card>
                 <Card>
                   <CardContent className="p-6 text-center">
-                    <Users className="h-12 w-12 mx-auto mb-4 text-purple-500" />
+                    <Icons.Users className="h-12 w-12 mx-auto mb-4 text-primary" />
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Community Forum</h3>
                     <p className="text-sm text-gray-600 mb-4">
                       Connect with other job seekers
                     </p>
                     <a 
                       href="/community" 
-                      className="text-purple-600 hover:text-purple-700 text-sm font-medium"
+                      className="text-primary hover:text-primary/80 text-sm font-medium"
                     >
                       Join Community
                     </a>

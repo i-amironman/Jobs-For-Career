@@ -1,19 +1,19 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
-  const router = useRouter();
   
   // Use static year to avoid hydration issues
   const currentYear = 2024;
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleTopCompaniesClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -28,7 +28,9 @@ const Footer = () => {
       }
     } else {
       // If not on home page, navigate to home page with hash
-      router.push('/#top-companies');
+      if (typeof window !== 'undefined') {
+        window.location.href = '/#top-companies';
+      }
     }
   };
 
@@ -44,7 +46,9 @@ const Footer = () => {
       }
     } else {
       // If not on about page, navigate to about page with hash
-      router.push('/about#get-in-touch');
+      if (typeof window !== 'undefined') {
+        window.location.href = '/about#get-in-touch';
+      }
     }
   };
 

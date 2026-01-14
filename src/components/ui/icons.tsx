@@ -162,4 +162,74 @@ export const Icons = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
     </svg>
   ),
+  FileText: ({ className }: { className?: string }) => (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  ),
+  HelpCircle: ({ className }: { className?: string }) => (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  ),
+  Scale: ({ className }: { className?: string }) => (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+    </svg>
+  ),
+  Gavel: ({ className }: { className?: string }) => (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+  ),
+  UserPlus: ({ className }: { className?: string }) => (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+    </svg>
+  ),
+  ChevronDown: ({ className }: { className?: string }) => (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  ),
 };
+
+// Export individual components as well for direct imports
+export const Search = Icons.Search;
+export const MapPin = Icons.MapPin;
+export const Briefcase = Icons.Briefcase;
+export const Menu = Icons.Menu;
+export const X = Icons.X;
+export const User = Icons.User;
+export const Filter = Icons.Filter;
+export const Clock = Icons.Clock;
+export const DollarSign = Icons.DollarSign;
+export const Building2 = Icons.Building2;
+export const ArrowRight = Icons.ArrowRight;
+export const Star = Icons.Star;
+export const TrendingUp = Icons.TrendingUp;
+export const Users = Icons.Users;
+export const Award = Icons.Award;
+export const Target = Icons.Target;
+export const Zap = Icons.Zap;
+export const CheckCircle = Icons.CheckCircle;
+export const Play = Icons.Play;
+export const Quote = Icons.Quote;
+export const ChevronLeft = Icons.ChevronLeft;
+export const ChevronRight = Icons.ChevronRight;
+// ChevronDown is now in its own component file to avoid import issues
+export const Mail = Icons.Mail;
+export const Phone = Icons.Phone;
+export const Facebook = Icons.Facebook;
+export const Twitter = Icons.Twitter;
+export const Linkedin = Icons.Linkedin;
+export const Instagram = Icons.Instagram;
+export const Globe = Icons.Globe;
+export const Shield = Icons.Shield;
+export const Heart = Icons.Heart;
+export const AlertCircle = Icons.AlertCircle;
+export const FileText = Icons.FileText;
+export const HelpCircle = Icons.HelpCircle;
+export const Scale = Icons.Scale;
+export const Gavel = Icons.Gavel;
+export const UserPlus = Icons.UserPlus;

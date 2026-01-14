@@ -62,27 +62,27 @@ const FeaturesSection = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {stats.map((stat, index) => (
+          {(stats || []).map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div className="text-3xl font-bold text-primary mb-2">{stat?.value || ''}</div>
+              <div className="text-sm text-muted-foreground">{stat?.label || ''}</div>
             </div>
           ))}
         </div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => (
+          {(features || []).map((feature, index) => (
             <Card key={index} className="hover:shadow-medium transition-shadow group">
               <CardContent className="p-8 text-center">
                 <div className="mb-6 flex justify-center">
-                  {feature.icon}
+                  {feature?.icon || <Icons.Star className="h-8 w-8 text-primary" />}
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-4">
-                  {feature.title}
+                  {feature?.title || 'Feature'}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {feature.description}
+                  {feature?.description || 'Description'}
                 </p>
               </CardContent>
             </Card>
@@ -109,10 +109,10 @@ const FeaturesSection = () => {
             ].map((item, index) => (
               <div key={index} className="text-center">
                 <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
-                  {item.step}
+                  {item?.step || index + 1}
                 </div>
-                <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+                <h3 className="font-semibold text-foreground mb-2">{item?.title || 'Step'}</h3>
+                <p className="text-sm text-muted-foreground">{item?.description || 'Description'}</p>
               </div>
             ))}
           </div>

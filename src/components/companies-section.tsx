@@ -77,12 +77,12 @@ const CompaniesSection = () => {
 
         {/* Company Categories */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
-          {companyCategories.map((category, index) => (
+          {(companyCategories || []).map((category, index) => (
             <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer">
               <CardContent className="p-4 text-center">
-                <div className="text-2xl mb-2">{category.icon}</div>
-                <h4 className="font-medium text-foreground mb-1">{category.name}</h4>
-                <p className="text-xs text-muted-foreground">{category.count} companies</p>
+                <div className="text-2xl mb-2">{category?.icon || '🏢'}</div>
+                <h4 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h4>
+                <p className="text-xs text-muted-foreground">{category?.count || 0} companies</p>
               </CardContent>
             </Card>
           ))}
@@ -90,46 +90,46 @@ const CompaniesSection = () => {
 
         {/* Top Companies Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {topCompanies.map((company, index) => (
+          {(topCompanies || []).map((company, index) => (
             <Card key={index} className="hover:shadow-medium transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center space-x-4">
                     <div className="w-16 h-16 rounded-xl bg-secondary flex items-center justify-center text-3xl">
-                      {company.logo}
+                      {company?.logo || '🏢'}
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-foreground">{company.name}</h3>
-                      <p className="text-sm text-muted-foreground">{company.industry}</p>
+                      <h3 className="text-xl font-semibold text-foreground">{company?.name || 'Company'}</h3>
+                      <p className="text-sm text-muted-foreground">{company?.industry || 'Industry'}</p>
                     </div>
                   </div>
                   <div className="text-right">
                     <div className="flex items-center mb-1">
                       <Icons.Star className="h-4 w-4 text-yellow-500 fill-current" />
-                      <span className="text-sm font-medium ml-1">{company.rating}</span>
+                      <span className="text-sm font-medium ml-1">{company?.rating || 0}</span>
                     </div>
-                    <p className="text-xs text-muted-foreground">{company.openJobs} open jobs</p>
+                    <p className="text-xs text-muted-foreground">{company?.openJobs || 0} open jobs</p>
                   </div>
                 </div>
 
                 <p className="text-muted-foreground mb-4 leading-relaxed">
-                  {company.description}
+                  {company?.description || 'Company description'}
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Icons.MapPin className="h-4 w-4 mr-2" />
-                    {company.location}
+                    {company?.location || 'Location'}
                   </div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Icons.Users className="h-4 w-4 mr-2" />
-                    {company.employees} employees
+                    {company?.employees || 'N/A'} employees
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {company.benefits.map((benefit, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs">
+                  {(company?.benefits || []).map((benefit, benefitIndex) => (
+                    <Badge key={benefitIndex} variant="secondary" className="text-xs">
                       {benefit}
                     </Badge>
                   ))}

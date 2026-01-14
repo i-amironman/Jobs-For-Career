@@ -137,20 +137,20 @@ export default function ScholarshipsPage() {
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-8">Featured Scholarships</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {scholarshipListItems.map((scholarship) => (
-                <Card key={scholarship.id} className="hover:shadow-medium transition-shadow cursor-pointer">
+              {(scholarshipListItems || []).map((scholarship, index) => (
+                <Card key={scholarship?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                          {scholarship.logo}
+                          {scholarship?.logo || '🎓'}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{scholarship.title}</h3>
-                          <p className="text-sm text-muted-foreground">{scholarship.provider}</p>
+                          <h3 className="font-semibold text-foreground">{scholarship?.title || 'Scholarship Title'}</h3>
+                          <p className="text-sm text-muted-foreground">{scholarship?.provider || 'Provider'}</p>
                         </div>
                       </div>
-                      {scholarship.featured && (
+                      {scholarship?.featured && (
                         <Badge variant="secondary" className="bg-primary/10 text-primary">
                           Featured
                         </Badge>
@@ -160,28 +160,28 @@ export default function ScholarshipsPage() {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.MapPin className="h-4 w-4 mr-2" />
-                        {scholarship.location}
+                        {scholarship?.location || 'Location'}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.DollarSign className="h-4 w-4 mr-2" />
-                        {scholarship.amount}
+                        {scholarship?.amount || 'Amount'}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.Clock className="h-4 w-4 mr-2" />
-                        Deadline: {scholarship.deadline}
+                        Deadline: {scholarship?.deadline || 'N/A'}
                       </div>
                     </div>
 
                     <div className="mb-4">
                       <p className="text-sm text-muted-foreground mb-2">
-                        <strong>Field:</strong> {scholarship.field}
+                        <strong>Field:</strong> {scholarship?.field || 'General'}
                       </p>
                     </div>
 
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-muted-foreground">Apply before deadline</span>
                       <Button size="sm" asChild>
-                        <Link href={`/scholarships/${scholarship.id}`}>
+                        <Link href={`/scholarships/${scholarship?.id || ''}`}>
                           Apply Now
                         </Link>
                       </Button>
@@ -206,11 +206,11 @@ export default function ScholarshipsPage() {
                 { name: 'Humanities', icon: '📚', scholarships: 987 },
                 { name: 'Law', icon: '⚖️', scholarships: 765 },
               ].map((category, index) => (
-                <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer">
+                <Card key={`scholarship-category-${index}`} className="hover:shadow-soft transition-shadow cursor-pointer">
                   <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-3">{category.icon}</div>
-                    <h3 className="font-medium text-foreground mb-1">{category.name}</h3>
-                    <p className="text-sm text-muted-foreground">{category.scholarships} scholarships</p>
+                    <div className="text-3xl mb-3">{category?.icon || '📂'}</div>
+                    <h3 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h3>
+                    <p className="text-sm text-muted-foreground">{category?.scholarships || 0} scholarships</p>
                   </CardContent>
                 </Card>
               ))}

@@ -100,9 +100,9 @@ const JobSearchSection = () => {
                 onChange={(e) => setJobType(e.target.value)}
                 className="w-full px-3 py-2 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                {jobTypes.map((type) => (
-                  <option key={type.value} value={type.value}>
-                    {type.label}
+                {(jobTypes || []).map((type, index) => (
+                  <option key={type?.value || index} value={type?.value || ''}>
+                    {type?.label || ''}
                   </option>
                 ))}
               </select>
@@ -151,20 +151,20 @@ const JobSearchSection = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredJobs.map((job) => (
-              <Card key={job.id} className="hover:shadow-medium transition-shadow cursor-pointer">
+            {(featuredJobs || []).map((job, index) => (
+              <Card key={job?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                        {job.logo}
+                        {job?.logo || '🏢'}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-foreground">{job.title}</h4>
-                        <p className="text-sm text-muted-foreground">{job.company}</p>
+                        <h4 className="font-semibold text-foreground">{job?.title || 'Job Title'}</h4>
+                        <p className="text-sm text-muted-foreground">{job?.company || 'Company'}</p>
                       </div>
                     </div>
-                    {job.featured && (
+                    {job?.featured && (
                       <Badge variant="secondary" className="bg-primary/10 text-primary">
                         Featured
                       </Badge>
@@ -174,28 +174,28 @@ const JobSearchSection = () => {
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Icons.MapPin className="h-4 w-4 mr-2" />
-                      {job.location}
+                      {job?.location || 'Location'}
                     </div>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Icons.Briefcase className="h-4 w-4 mr-2" />
-                      {job.type}
+                      {job?.type || 'Job Type'}
                     </div>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <span className="h-4 w-4 mr-2">$</span>
-                      {job.salary}
+                      {job?.salary || 'Salary'}
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {job.skills.map((skill, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
+                    {(job?.skills || []).map((skill, skillIndex) => (
+                      <Badge key={skillIndex} variant="outline" className="text-xs">
                         {skill}
                       </Badge>
                     ))}
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">{job.posted}</span>
+                    <span className="text-xs text-muted-foreground">{job?.posted || 'Recently'}</span>
                     <Button size="sm" variant="outline">
                       Apply Now
                     </Button>
@@ -220,9 +220,9 @@ const JobSearchSection = () => {
             ].map((category, index) => (
               <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer">
                 <CardContent className="p-4 text-center">
-                  <div className="text-2xl mb-2">{category.icon}</div>
-                  <h4 className="font-medium text-foreground mb-1">{category.name}</h4>
-                  <p className="text-xs text-muted-foreground">{category.jobs} jobs</p>
+                  <div className="text-2xl mb-2">{category?.icon || '📂'}</div>
+                  <h4 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h4>
+                  <p className="text-xs text-muted-foreground">{category?.jobs || 0} jobs</p>
                 </CardContent>
               </Card>
             ))}

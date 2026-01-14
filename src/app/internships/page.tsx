@@ -138,20 +138,20 @@ export default function InternshipsPage() {
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-8">Featured Internships</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {internshipListItems.map((internship) => (
-                <Card key={internship.id} className="hover:shadow-medium transition-shadow cursor-pointer">
+              {(internshipListItems || []).map((internship, index) => (
+                <Card key={internship?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                          {internship.logo}
+                          {internship?.logo || '🏢'}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{internship.title}</h3>
-                          <p className="text-sm text-muted-foreground">{internship.company}</p>
+                          <h3 className="font-semibold text-foreground">{internship?.title || 'Internship Title'}</h3>
+                          <p className="text-sm text-muted-foreground">{internship?.company || 'Company'}</p>
                         </div>
                       </div>
-                      {internship.featured && (
+                      {internship?.featured && (
                         <Badge variant="secondary" className="bg-primary/10 text-primary">
                           Featured
                         </Badge>
@@ -161,30 +161,30 @@ export default function InternshipsPage() {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.MapPin className="h-4 w-4 mr-2" />
-                        {internship.location}
+                        {internship?.location || 'Location'}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.Clock className="h-4 w-4 mr-2" />
-                        {internship.duration}
+                        {internship?.duration || 'Duration'}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <span className="h-4 w-4 mr-2">$</span>
-                        {internship.stipend}
+                        {internship?.stipend || 'Stipend'}
                       </div>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {internship.skills.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} variant="outline" className="text-xs">
-                          {skill}
+                      {(internship?.skills || []).slice(0, 4).map((skill, skillIndex) => (
+                        <Badge key={`${skill}-${skillIndex}`} variant="outline" className="text-xs">
+                          {skill || 'Skill'}
                         </Badge>
                       ))}
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">{internship.posted}</span>
+                      <span className="text-xs text-muted-foreground">{internship?.posted || 'Recently'}</span>
                       <Button size="sm" asChild>
-                        <Link href={`/internships/${internship.id}`}>
+                        <Link href={`/internships/${internship?.id || ''}`}>
                           Apply Now
                         </Link>
                       </Button>
@@ -209,11 +209,11 @@ export default function InternshipsPage() {
                 { name: 'Healthcare', icon: '🏥', internships: 543 },
                 { name: 'Education', icon: '🎓', internships: 432 },
               ].map((category, index) => (
-                <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer">
+                <Card key={`internship-category-${index}`} className="hover:shadow-soft transition-shadow cursor-pointer">
                   <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-3">{category.icon}</div>
-                    <h3 className="font-medium text-foreground mb-1">{category.name}</h3>
-                    <p className="text-sm text-muted-foreground">{category.internships} internships</p>
+                    <div className="text-3xl mb-3">{category?.icon || '📂'}</div>
+                    <h3 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h3>
+                    <p className="text-sm text-muted-foreground">{category?.internships || 0} internships</p>
                   </CardContent>
                 </Card>
               ))}
