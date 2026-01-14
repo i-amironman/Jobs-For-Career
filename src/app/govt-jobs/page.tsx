@@ -9,7 +9,6 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
-import { govtJobListItems } from '@/lib/govt-job-data';
 
 export default function GovtJobsPage() {
   const categories = [
@@ -264,69 +263,6 @@ export default function GovtJobsPage() {
                     </CardContent>
                   </Card>
                 </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* All Government Jobs */}
-        <section className="py-20">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                All Government Jobs
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Complete list of available government positions
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {govtJobListItems.map((job) => (
-                <Card key={job.id} className="hover:shadow-medium transition-shadow cursor-pointer">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                          {job.logo}
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground">{job.title}</h3>
-                          <p className="text-sm text-muted-foreground">{job.agency}</p>
-                        </div>
-                      </div>
-                      {job.featured && (
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">
-                          Featured
-                        </Badge>
-                      )}
-                    </div>
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        <Icons.MapPin className="h-4 w-4 mr-2" />
-                        {job.location}
-                      </div>
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        <Icons.Briefcase className="h-4 w-4 mr-2" />
-                        {job.type}
-                      </div>
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        <Icons.DollarSign className="h-4 w-4 mr-2" />
-                        {job.salary}
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {job.skills.map((skill, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                    <Button className="w-full">
-                      Apply Now
-                    </Button>
-                  </CardContent>
-                </Card>
               ))}
             </div>
           </div>

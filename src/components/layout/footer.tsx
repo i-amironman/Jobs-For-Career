@@ -38,7 +38,7 @@ const Footer = () => {
   return (
     <footer className="bg-secondary/50 border-t">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -88,33 +88,6 @@ const Footer = () => {
               <li>
                 <Link href="/internships" className="text-muted-foreground hover:text-primary transition-colors">
                   Internships
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">Resources</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/resume-builder" className="text-muted-foreground hover:text-primary transition-colors">
-                  Resume Builder
-                </Link>
-              </li>
-              <li>
-                <Link href="/career-advice" className="text-muted-foreground hover:text-primary transition-colors">
-                  Career Advice
-                </Link>
-              </li>
-              <li>
-                <Link href="/interview-tips" className="text-muted-foreground hover:text-primary transition-colors">
-                  Interview Tips
-                </Link>
-              </li>
-              <li>
-                <Link href="/salary-guide" className="text-muted-foreground hover:text-primary transition-colors">
-                  Salary Guide
                 </Link>
               </li>
             </ul>
