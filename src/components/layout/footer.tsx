@@ -32,6 +32,22 @@ const Footer = () => {
     }
   };
 
+  const handleContactUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    // Check if we're on the about page
+    if (typeof window !== 'undefined' && window.location.pathname === '/about') {
+      // If on about page, scroll to the section
+      const element = document.getElementById('get-in-touch');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If not on about page, navigate to about page with hash
+      router.push('/about#get-in-touch');
+    }
+  };
+
   return (
     <footer className="bg-secondary/50 border-t">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
@@ -95,7 +111,11 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground">Support</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link 
+                  href="/about#get-in-touch" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  onClick={handleContactUsClick}
+                >
                   Contact Us
                 </Link>
               </li>
