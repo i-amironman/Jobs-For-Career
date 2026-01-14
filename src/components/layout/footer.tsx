@@ -20,7 +20,7 @@ const Footer = () => {
     e.preventDefault();
     
     // Check if we're on the home page
-    if (window.location.pathname === '/') {
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
       // If on home page, scroll to the section
       const element = document.getElementById('top-companies');
       if (element) {
