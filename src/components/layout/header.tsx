@@ -59,23 +59,13 @@ const Header = () => {
           </nav>
 
           {/* Desktop Search */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center">
             <div className="relative">
               <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Search jobs, internships..."
                 className="w-64 pl-10"
               />
-            </div>
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm">
-                <Icons.LogIn className="h-4 w-4 mr-2" />
-                Login
-              </Button>
-              <Button size="sm">
-                <Icons.UserPlus className="h-4 w-4 mr-2" />
-                Sign Up
-              </Button>
             </div>
           </div>
 
@@ -138,17 +128,6 @@ const Header = () => {
                 About
               </Link>
             </nav>
-
-            <div className="flex flex-col space-y-2">
-              <Button variant="ghost" size="sm" className="justify-start">
-                <Icons.LogIn className="h-4 w-4 mr-2" />
-                Login
-              </Button>
-              <Button size="sm" className="justify-start">
-                <Icons.UserPlus className="h-4 w-4 mr-2" />
-                Sign Up
-              </Button>
-            </div>
           </div>
         )}
       </div>
