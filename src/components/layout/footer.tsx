@@ -6,7 +6,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
-  
   // Use static year to avoid hydration issues
   const currentYear = 2024;
 
@@ -19,36 +18,18 @@ const Footer = () => {
   const handleTopCompaniesClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     
-    // Check if we're on the home page
-    if (typeof window !== 'undefined' && window.location.pathname === '/') {
-      // If on home page, scroll to the section
-      const element = document.getElementById('top-companies');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      // If not on home page, navigate to home page with hash
-      if (typeof window !== 'undefined') {
-        window.location.href = '/#top-companies';
-      }
+    // Simple navigation using window.location to avoid HMR issues
+    if (typeof window !== 'undefined') {
+      window.location.href = '/#top-companies';
     }
   };
 
   const handleContactUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     
-    // Check if we're on the about page
-    if (typeof window !== 'undefined' && window.location.pathname === '/about') {
-      // If on about page, scroll to the section
-      const element = document.getElementById('get-in-touch');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      // If not on about page, navigate to about page with hash
-      if (typeof window !== 'undefined') {
-        window.location.href = '/about#get-in-touch';
-      }
+    // Simple navigation using window.location to avoid HMR issues
+    if (typeof window !== 'undefined') {
+      window.location.href = '/about#get-in-touch';
     }
   };
 
