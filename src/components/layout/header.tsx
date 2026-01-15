@@ -41,21 +41,11 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <CustomLink href="/jobs" className="text-foreground hover:text-primary transition-colors font-medium">
-              Jobs
-            </CustomLink>
-            <CustomLink href="/internships" className="text-foreground hover:text-primary transition-colors font-medium">
-              Internships
-            </CustomLink>
-            <CustomLink href="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium">
-              Scholarships
-            </CustomLink>
-            <CustomLink href="/govt-jobs" className="text-foreground hover:text-primary transition-colors font-medium">
-              Govt. Jobs
-            </CustomLink>
-            <CustomLink href="/about" className="text-foreground hover:text-primary transition-colors font-medium">
-              About
-            </CustomLink>
+            <CustomLink href="/jobs" className="text-foreground hover:text-primary transition-colors font-medium">Jobs</CustomLink>
+            <CustomLink href="/internships" className="text-foreground hover:text-primary transition-colors font-medium">Internships</CustomLink>
+            <CustomLink href="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium">Scholarships</CustomLink>
+            <CustomLink href="/govt-jobs" className="text-foreground hover:text-primary transition-colors font-medium">Govt. Jobs</CustomLink>
+            <CustomLink href="/about" className="text-foreground hover:text-primary transition-colors font-medium">About</CustomLink>
           </nav>
 
           {/* Desktop Search */}
@@ -96,37 +86,27 @@ const Header = () => {
                 href="/jobs" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
-              >
-                Jobs
-              </CustomLink>
+              >Jobs</CustomLink>
               <CustomLink 
                 href="/internships" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
-              >
-                Internships
-              </CustomLink>
+              >Internships</CustomLink>
               <CustomLink 
                 href="/scholarships" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
-              >
-                Scholarships
-              </CustomLink>
+              >Scholarships</CustomLink>
               <CustomLink 
                 href="/govt-jobs" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
-              >
-                Govt. Jobs
-              </CustomLink>
+              >Govt. Jobs</CustomLink>
               <CustomLink 
                 href="/about" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </CustomLink>
+              >About</CustomLink>
             </nav>
           </div>
         )}

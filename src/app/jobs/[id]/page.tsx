@@ -20,7 +20,7 @@ export default async function JobPage({ params }: JobPageProps) {
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pt-0 pb-12">
             <div className="text-center">
               <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-muted flex items-center justify-center">
                 <Icons.Briefcase className="h-12 w-12 text-muted-foreground" />
@@ -46,7 +46,7 @@ export default async function JobPage({ params }: JobPageProps) {
     <div className="min-h-screen flex flex-col">
       <Header />
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary/10 to-secondary/10 py-12">
+      <div className="bg-gradient-to-br from-primary/10 to-secondary/10 pt-0 pb-12">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">

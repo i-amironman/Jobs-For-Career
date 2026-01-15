@@ -186,7 +186,7 @@ export default function FAQ() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-secondary/30 to-primary/10">
+        <section className="pt-0 pb-16 bg-gradient-to-br from-secondary/30 to-primary/10">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="text-center max-w-4xl mx-auto">
               <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center">

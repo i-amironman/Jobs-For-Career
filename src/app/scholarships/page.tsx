@@ -15,7 +15,7 @@ export default function ScholarshipsPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="py-12">
+      <main className="pt-0 pb-12">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           {/* Hero Section */}
           <div className="text-center mb-12">

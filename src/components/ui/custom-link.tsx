@@ -6,7 +6,7 @@ interface CustomLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   target?: string;
   rel?: string;
 }

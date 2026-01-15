@@ -27,7 +27,7 @@ export default function GovtJobsPage() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <section className="pt-0 pb-16 bg-gradient-to-br from-primary/5 to-secondary/5">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="text-center mb-12">
               <div className="w-32 h-32 mx-auto mb-6 relative flex items-center justify-center">

@@ -75,7 +75,7 @@ const JobSearchSection = () => {
 
         {/* Search Bar */}
         <div className="max-w-4xl mx-auto mb-8">
-          <div className="bg-card rounded-2xl shadow-soft p-6">
+          <div className="card-enhanced rounded-2xl p-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
               <div className="relative">
                 <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -152,7 +152,7 @@ const JobSearchSection = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(featuredJobs || []).map((job, index) => (
-              <Card key={job?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
+              <Card key={job?.id || index} className="card-enhanced hover:shadow-medium transition-shadow cursor-pointer">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-3">
@@ -218,7 +218,7 @@ const JobSearchSection = () => {
               { name: 'Finance', icon: '💰', jobs: 543 },
               { name: 'Customer Support', icon: '🎧', jobs: 321 },
             ].map((category, index) => (
-              <Card key={index} className="hover:shadow-soft transition-shadow cursor-pointer">
+              <Card key={index} className="card-enhanced hover:shadow-soft transition-shadow cursor-pointer">
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl mb-2">{category?.icon || '📂'}</div>
                   <h4 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h4>
