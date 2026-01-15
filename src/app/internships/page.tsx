@@ -9,9 +9,19 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
+import FilterPanel from '@/components/ui/filter-panel';
+import { useFilters } from '@/hooks/use-filters';
 import { internshipListItems } from '@/lib/internship-data';
 
 export default function InternshipsPage() {
+  const {
+    filters,
+    filteredItems,
+    updateFilters,
+    resetFilters,
+    resultsCount
+  } = useFilters(internshipListItems, 'internships');
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -21,12 +31,12 @@ export default function InternshipsPage() {
           <div className="text-center mb-12">
             <div className="mb-8">
               <div className="w-32 h-32 mx-auto mb-6 relative flex items-center justify-center">
-              <img 
-                src="/illustrations/internships-hero.png" 
-                alt="Launch Your Career with Internships" 
-                className="w-full h-full object-contain"
-              />
-            </div>
+                <img 
+                  src="/illustrations/internships-hero.png" 
+                  alt="Launch Your Career with Internships" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Launch Your Career with Internships
@@ -36,47 +46,14 @@ export default function InternshipsPage() {
             </p>
           </div>
 
-          {/* Search Section */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <Card className="shadow-medium">
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                  <div className="relative">
-                    <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      placeholder="Internship title, company..."
-                      className="pl-10"
-                    />
-                  </div>
-                  <div className="relative">
-                    <Icons.MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      placeholder="Location or Remote"
-                      className="pl-10"
-                    />
-                  </div>
-                  <select className="w-full px-3 py-2 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary">
-                    <option value="">All Durations</option>
-                    <option value="summer">Summer</option>
-                    <option value="winter">Winter</option>
-                    <option value="fall">Fall</option>
-                    <option value="spring">Spring</option>
-                    <option value="year-round">Year Round</option>
-                  </select>
-                </div>
-                <div className="flex gap-4">
-                  <Button className="flex-1 bg-primary hover:bg-primary/90">
-                    <Icons.Search className="h-4 w-4 mr-2" />
-                    Search Internships
-                  </Button>
-                  <Button variant="outline">
-                    <Icons.Filter className="h-4 w-4 mr-2" />
-                    Filters
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Filter Panel */}
+          <FilterPanel
+            filters={filters}
+            onFiltersChange={updateFilters}
+            onReset={resetFilters}
+            type="internships"
+            resultsCount={resultsCount}
+          />
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
@@ -134,24 +111,35 @@ export default function InternshipsPage() {
             </div>
           </div>
 
-          {/* Featured Internships */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Featured Internships</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(internshipListItems || []).map((internship, index) => (
-                <Card key={internship?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
+          {/* Results Header */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-2">
+              {resultsCount} {resultsCount === 1 ? 'Internship' : 'Internships'} Available
+            </h2>
+            {resultsCount === 0 && (
+              <p className="text-muted-foreground">
+                No internships found matching your criteria. Try adjusting your filters.
+              </p>
+            )}
+          </div>
+
+          {/* Internships List */}
+          {resultsCount > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {filteredItems.map((internship) => (
+                <Card key={internship.id} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                          {internship?.logo || '🏢'}
+                          {internship.logo}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{internship?.title || 'Internship Title'}</h3>
-                          <p className="text-sm text-muted-foreground">{internship?.company || 'Company'}</p>
+                          <h3 className="font-semibold text-foreground">{internship.title}</h3>
+                          <p className="text-sm text-muted-foreground">{internship.company}</p>
                         </div>
                       </div>
-                      {internship?.featured && (
+                      {internship.featured && (
                         <Badge variant="secondary" className="bg-primary/10 text-primary">
                           Featured
                         </Badge>
@@ -161,30 +149,30 @@ export default function InternshipsPage() {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.MapPin className="h-4 w-4 mr-2" />
-                        {internship?.location || 'Location'}
+                        {internship.location}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.Clock className="h-4 w-4 mr-2" />
-                        {internship?.duration || 'Duration'}
+                        {internship.duration}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <span className="h-4 w-4 mr-2">$</span>
-                        {internship?.stipend || 'Stipend'}
+                        {internship.stipend}
                       </div>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {(internship?.skills || []).slice(0, 4).map((skill, skillIndex) => (
+                      {internship.skills.slice(0, 4).map((skill, skillIndex) => (
                         <Badge key={`${skill}-${skillIndex}`} variant="outline" className="text-xs">
-                          {skill || 'Skill'}
+                          {skill}
                         </Badge>
                       ))}
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">{internship?.posted || 'Recently'}</span>
+                      <span className="text-xs text-muted-foreground">{internship.posted}</span>
                       <Button size="sm" asChild>
-                        <Link href={`/internships/${internship?.id || ''}`}>
+                        <Link href={`/internships/${internship.id}`}>
                           Apply Now
                         </Link>
                       </Button>
@@ -193,7 +181,7 @@ export default function InternshipsPage() {
                 </Card>
               ))}
             </div>
-          </div>
+          )}
 
           {/* Internship Categories */}
           <div>
@@ -211,9 +199,9 @@ export default function InternshipsPage() {
               ].map((category, index) => (
                 <Card key={`internship-category-${index}`} className="hover:shadow-soft transition-shadow cursor-pointer">
                   <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-3">{category?.icon || '📂'}</div>
-                    <h3 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h3>
-                    <p className="text-sm text-muted-foreground">{category?.internships || 0} internships</p>
+                    <div className="text-3xl mb-3">{category.icon}</div>
+                    <h3 className="font-medium text-foreground mb-1">{category.name}</h3>
+                    <p className="text-sm text-muted-foreground">{category.internships} internships</p>
                   </CardContent>
                 </Card>
               ))}

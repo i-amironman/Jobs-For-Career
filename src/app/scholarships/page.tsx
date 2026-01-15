@@ -4,14 +4,23 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
+import FilterPanel from '@/components/ui/filter-panel';
+import { useFilters } from '@/hooks/use-filters';
 import { scholarshipListItems } from '@/lib/scholarship-data';
 
 export default function ScholarshipsPage() {
+  const {
+    filters,
+    filteredItems,
+    updateFilters,
+    resetFilters,
+    resultsCount
+  } = useFilters(scholarshipListItems, 'scholarships');
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -21,61 +30,29 @@ export default function ScholarshipsPage() {
           <div className="text-center mb-12">
             <div className="mb-8">
               <div className="w-32 h-32 mx-auto mb-6 relative flex items-center justify-center">
-              <img 
-                src="/illustrations/scholarships-hero.png" 
-                alt="Fund Your Education with Scholarships" 
-                className="w-full h-full object-contain"
-              />
-            </div>
+                <img 
+                  src="/illustrations/scholarships-hero.png" 
+                  alt="Find Your Perfect Scholarship" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Fund Your Education with Scholarships
+              Find Your Perfect Scholarship
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Discover thousands of scholarship opportunities to help you achieve your educational goals without financial burden.
+              Discover amazing scholarship opportunities to fund your education. Apply for financial aid that matches your academic goals.
             </p>
           </div>
 
-          {/* Search Section */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <Card className="shadow-medium">
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                  <div className="relative">
-                    <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      placeholder="Scholarship name, field..."
-                      className="pl-10"
-                    />
-                  </div>
-                  <div className="relative">
-                    <Icons.MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      placeholder="Location or Online"
-                      className="pl-10"
-                    />
-                  </div>
-                  <select className="w-full px-3 py-2 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary">
-                    <option value="">All Levels</option>
-                    <option value="undergraduate">Undergraduate</option>
-                    <option value="graduate">Graduate</option>
-                    <option value="postgraduate">Postgraduate</option>
-                    <option value="phd">PhD</option>
-                  </select>
-                </div>
-                <div className="flex gap-4">
-                  <Button className="flex-1 bg-primary hover:bg-primary/90">
-                    <Icons.Search className="h-4 w-4 mr-2" />
-                    Search Scholarships
-                  </Button>
-                  <Button variant="outline">
-                    <Icons.Filter className="h-4 w-4 mr-2" />
-                    Filters
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Filter Panel */}
+          <FilterPanel
+            filters={filters}
+            onFiltersChange={updateFilters}
+            onReset={resetFilters}
+            type="scholarships"
+            resultsCount={resultsCount}
+          />
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
@@ -88,22 +65,22 @@ export default function ScholarshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={8500} suffix="+" duration={2000} />
+                <AnimatedNumber end={3500} suffix="+" duration={2000} />
               </div>
               <div className="text-sm text-muted-foreground">Active Scholarships</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
                 <img 
-                  src="/illustrations/success-stats.png" 
-                  alt="Total Awards" 
+                  src="/illustrations/companies-stats.png" 
+                  alt="Providers" 
                   className="w-full h-full object-contain"
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={50} prefix="$" suffix="M+" duration={2000} />
+                <AnimatedNumber end={250} suffix="+" duration={2000} />
               </div>
-              <div className="text-sm text-muted-foreground">Total Awards</div>
+              <div className="text-sm text-muted-foreground">Providers</div>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 relative flex items-center justify-center">
@@ -114,7 +91,7 @@ export default function ScholarshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={35000} suffix="+" duration={2000} />
+                <AnimatedNumber end={50000} suffix="+" duration={2000} />
               </div>
               <div className="text-sm text-muted-foreground">Students Helped</div>
             </div>
@@ -127,30 +104,41 @@ export default function ScholarshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={95} suffix="%" duration={2000} />
+                <AnimatedNumber end={85} suffix="%" duration={2000} />
               </div>
               <div className="text-sm text-muted-foreground">Success Rate</div>
             </div>
           </div>
 
-          {/* Featured Scholarships */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Featured Scholarships</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(scholarshipListItems || []).map((scholarship, index) => (
-                <Card key={scholarship?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
+          {/* Results Header */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-2">
+              {resultsCount} {resultsCount === 1 ? 'Scholarship' : 'Scholarships'} Available
+            </h2>
+            {resultsCount === 0 && (
+              <p className="text-muted-foreground">
+                No scholarships found matching your criteria. Try adjusting your filters.
+              </p>
+            )}
+          </div>
+
+          {/* Scholarships List */}
+          {resultsCount > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {filteredItems.map((scholarship) => (
+                <Card key={scholarship.id} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                          {scholarship?.logo || '🎓'}
+                          {scholarship.logo}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{scholarship?.title || 'Scholarship Title'}</h3>
-                          <p className="text-sm text-muted-foreground">{scholarship?.provider || 'Provider'}</p>
+                          <h3 className="font-semibold text-foreground">{scholarship.title}</h3>
+                          <p className="text-sm text-muted-foreground">{scholarship.provider}</p>
                         </div>
                       </div>
-                      {scholarship?.featured && (
+                      {scholarship.featured && (
                         <Badge variant="secondary" className="bg-primary/10 text-primary">
                           Featured
                         </Badge>
@@ -160,28 +148,28 @@ export default function ScholarshipsPage() {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.MapPin className="h-4 w-4 mr-2" />
-                        {scholarship?.location || 'Location'}
+                        {scholarship.location}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
-                        <Icons.DollarSign className="h-4 w-4 mr-2" />
-                        {scholarship?.amount || 'Amount'}
+                        <span className="h-4 w-4 mr-2">$</span>
+                        {scholarship.amount}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.Clock className="h-4 w-4 mr-2" />
-                        Deadline: {scholarship?.deadline || 'N/A'}
+                        Deadline: {scholarship.deadline}
                       </div>
                     </div>
 
                     <div className="mb-4">
-                      <p className="text-sm text-muted-foreground mb-2">
-                        <strong>Field:</strong> {scholarship?.field || 'General'}
-                      </p>
+                      <Badge variant="outline" className="text-xs">
+                        {scholarship.field}
+                      </Badge>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">Apply before deadline</span>
+                      <span className="text-xs text-muted-foreground">Apply before {scholarship.deadline}</span>
                       <Button size="sm" asChild>
-                        <Link href={`/scholarships/${scholarship?.id || ''}`}>
+                        <Link href={`/scholarships/${scholarship.id}`}>
                           Apply Now
                         </Link>
                       </Button>
@@ -190,67 +178,67 @@ export default function ScholarshipsPage() {
                 </Card>
               ))}
             </div>
-          </div>
+          )}
 
           {/* Scholarship Categories */}
           <div>
-            <h2 className="text-3xl font-bold text-foreground mb-8">Browse by Category</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Browse by Field</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {[
-                { name: 'STEM', icon: '🔬', scholarships: 3456 },
-                { name: 'Business', icon: '💼', scholarships: 2341 },
-                { name: 'Arts', icon: '🎨', scholarships: 1876 },
-                { name: 'Medicine', icon: '🏥', scholarships: 1654 },
-                { name: 'Education', icon: '🎓', scholarships: 1432 },
-                { name: 'Social Sciences', icon: '👥', scholarships: 1298 },
-                { name: 'Humanities', icon: '📚', scholarships: 987 },
-                { name: 'Law', icon: '⚖️', scholarships: 765 },
+                { name: 'STEM', icon: '🔬', scholarships: 1234 },
+                { name: 'Business', icon: '💼', scholarships: 987 },
+                { name: 'Arts', icon: '🎨', scholarships: 654 },
+                { name: 'Healthcare', icon: '🏥', scholarships: 543 },
+                { name: 'Education', icon: '🎓', scholarships: 432 },
+                { name: 'Engineering', icon: '⚙️', scholarships: 321 },
+                { name: 'Social Work', icon: '🤝', scholarships: 210 },
+                { name: 'Public Health', icon: '🏥', scholarships: 189 },
               ].map((category, index) => (
                 <Card key={`scholarship-category-${index}`} className="hover:shadow-soft transition-shadow cursor-pointer">
                   <CardContent className="p-6 text-center">
-                    <div className="text-3xl mb-3">{category?.icon || '📂'}</div>
-                    <h3 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h3>
-                    <p className="text-sm text-muted-foreground">{category?.scholarships || 0} scholarships</p>
+                    <div className="text-3xl mb-3">{category.icon}</div>
+                    <h3 className="font-medium text-foreground mb-1">{category.name}</h3>
+                    <p className="text-sm text-muted-foreground">{category.scholarships} scholarships</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </div>
 
-          {/* Tips Section */}
+          {/* Benefits Section */}
           <div className="mt-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Scholarship Application Tips</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Why Apply for Scholarships?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <Card className="hover:shadow-soft transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-lg font-bold text-primary">1</span>
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icons.DollarSign className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">Start Early</h3>
+                  <h3 className="font-semibold text-foreground mb-2">Financial Support</h3>
                   <p className="text-sm text-muted-foreground">
-                    Begin your scholarship search at least 6-12 months before deadlines
+                    Reduce the financial burden of education and focus on your studies
                   </p>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-soft transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-lg font-bold text-primary">2</span>
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icons.Award className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">Customize Applications</h3>
+                  <h3 className="font-semibold text-foreground mb-2">Academic Recognition</h3>
                   <p className="text-sm text-muted-foreground">
-                    Tailor each application to the specific scholarship requirements
+                    Enhance your resume and stand out to future employers
                   </p>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-soft transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-lg font-bold text-primary">3</span>
+                <CardContent className="p-6 text-center">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icons.Users className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">Get Recommendations</h3>
+                  <h3 className="font-semibold text-foreground mb-2">Networking Opportunities</h3>
                   <p className="text-sm text-muted-foreground">
-                    Secure strong letters of recommendation from teachers and mentors
+                    Connect with scholarship providers and fellow recipients
                   </p>
                 </CardContent>
               </Card>

@@ -403,6 +403,10 @@ export interface ScholarshipListItem {
   logo: string;
   featured: boolean;
   field: string;
+  company?: string;
+  type?: string;
+  skills?: string[];
+  posted?: string;
 }
 
 export const scholarshipListItems: ScholarshipListItem[] = [
@@ -415,7 +419,11 @@ export const scholarshipListItems: ScholarshipListItem[] = [
     deadline: 'March 15, 2024',
     logo: '🔬',
     featured: true,
-    field: 'Science, Technology, Engineering, Math'
+    field: 'Science, Technology, Engineering, Math',
+    company: 'National Science Foundation',
+    type: 'Full Time',
+    skills: ['React', 'TypeScript', 'Node.js', 'AWS', 'GraphQL'],
+    posted: '1 week ago'
   },
   {
     id: '2',
@@ -426,7 +434,11 @@ export const scholarshipListItems: ScholarshipListItem[] = [
     deadline: 'April 1, 2024',
     logo: '🌟',
     featured: true,
-    field: 'Computer Science, Business'
+    field: 'Computer Science, Business',
+    company: 'TechCorp Foundation',
+    type: 'Full Time',
+    skills: ['Leadership', 'Technology', 'Business'],
+    posted: '3 days ago'
   },
   {
     id: '3',
@@ -437,7 +449,11 @@ export const scholarshipListItems: ScholarshipListItem[] = [
     deadline: 'March 30, 2024',
     logo: '🎓',
     featured: true,
-    field: 'Education, Social Work'
+    field: 'Education, Social Work',
+    company: 'Education First Initiative',
+    type: 'Full Time',
+    skills: ['Education', 'Community Service'],
+    posted: '5 days ago'
   },
   {
     id: '4',
@@ -448,7 +464,11 @@ export const scholarshipListItems: ScholarshipListItem[] = [
     deadline: 'April 15, 2024',
     logo: '🚀',
     featured: true,
-    field: 'Entrepreneurship, Innovation'
+    field: 'Entrepreneurship, Innovation',
+    company: 'StartupHub Ventures',
+    type: 'Full Time',
+    skills: ['Innovation', 'Entrepreneurship'],
+    posted: '1 week ago'
   },
   {
     id: '5',
@@ -459,7 +479,11 @@ export const scholarshipListItems: ScholarshipListItem[] = [
     deadline: 'March 25, 2024',
     logo: '🎨',
     featured: true,
-    field: 'Arts, Design, Music'
+    field: 'Arts, Design, Music',
+    company: 'Creative Arts Foundation',
+    type: 'Part Time',
+    skills: ['Arts', 'Design', 'Music'],
+    posted: '2 weeks ago'
   },
   {
     id: '6',
@@ -470,6 +494,10 @@ export const scholarshipListItems: ScholarshipListItem[] = [
     deadline: 'May 1, 2024',
     logo: '🏥',
     featured: true,
-    field: 'Medicine, Public Health'
+    field: 'Medicine, Public Health',
+    company: 'World Health Organization',
+    type: 'Full Time',
+    skills: ['Healthcare', 'Medicine'],
+    posted: '4 days ago'
   }
 ];

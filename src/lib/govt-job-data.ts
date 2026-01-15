@@ -413,6 +413,7 @@ export interface GovtJobListItem {
   logo: string;
   featured: boolean;
   skills: string[];
+  company?: string;
 }
 
 export const govtJobListItems: GovtJobListItem[] = [
@@ -426,7 +427,8 @@ export const govtJobListItems: GovtJobListItem[] = [
     posted: '1 week ago',
     logo: '🏛️',
     featured: true,
-    skills: ['Cybersecurity', 'Network Administration', 'System Security', 'Clearance']
+    skills: ['Cybersecurity', 'Network Administration', 'System Security', 'Clearance'],
+    company: 'Department of Defense'
   },
   {
     id: '2',
@@ -438,7 +440,8 @@ export const govtJobListItems: GovtJobListItem[] = [
     posted: '3 days ago',
     logo: '🌿',
     featured: true,
-    skills: ['Data Analysis', 'Policy Development', 'Research', 'Communication']
+    skills: ['Data Analysis', 'Policy Development', 'Research', 'Communication'],
+    company: 'Environmental Protection Agency'
   },
   {
     id: '3',
@@ -450,7 +453,8 @@ export const govtJobListItems: GovtJobListItem[] = [
     posted: '5 days ago',
     logo: '🏞️',
     featured: true,
-    skills: ['Environmental Engineering', 'GIS', 'Water Resources', 'Regulatory Compliance']
+    skills: ['Environmental Engineering', 'GIS', 'Water Resources', 'Regulatory Compliance'],
+    company: 'Department of the Interior'
   },
   {
     id: '4',
@@ -462,7 +466,8 @@ export const govtJobListItems: GovtJobListItem[] = [
     posted: '1 week ago',
     logo: '🏛️',
     featured: true,
-    skills: ['Human Resources', 'Benefits Administration', 'Recruitment', 'Policy Implementation']
+    skills: ['Human Resources', 'Benefits Administration', 'Recruitment', 'Policy Implementation'],
+    company: 'Social Security Administration'
   },
   {
     id: '5',
@@ -474,7 +479,8 @@ export const govtJobListItems: GovtJobListItem[] = [
     posted: '4 days ago',
     logo: '🌍',
     featured: true,
-    skills: ['Public Relations', 'Communication', 'Media Relations', 'Policy']
+    skills: ['Public Relations', 'Communication', 'Media Relations', 'Policy'],
+    company: 'Department of State'
   },
   {
     id: '6',
@@ -486,6 +492,7 @@ export const govtJobListItems: GovtJobListItem[] = [
     posted: '2 weeks ago',
     logo: '💰',
     featured: true,
-    skills: ['Financial Analysis', 'Budgeting', 'Accounting', 'Data Analysis']
+    skills: ['Financial Analysis', 'Budgeting', 'Accounting', 'Data Analysis'],
+    company: 'Department of Treasury'
   }
 ];

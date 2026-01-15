@@ -3,15 +3,24 @@
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import Link from 'next/link';
-import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
+import FilterPanel from '@/components/ui/filter-panel';
+import { useFilters } from '@/hooks/use-filters';
 import { jobListItems } from '@/lib/job-data';
 
 export default function JobsPage() {
+  const {
+    filters,
+    filteredItems,
+    updateFilters,
+    resetFilters,
+    resultsCount
+  } = useFilters(jobListItems, 'jobs');
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -21,12 +30,12 @@ export default function JobsPage() {
           <div className="text-center mb-12">
             <div className="mb-8">
               <div className="w-32 h-32 mx-auto mb-6 relative flex items-center justify-center">
-              <img 
-                src="/illustrations/jobs-hero.png" 
-                alt="Find Your Dream Job" 
-                className="w-full h-full object-contain"
-              />
-            </div>
+                <img 
+                  src="/illustrations/jobs-hero.png" 
+                  alt="Find Your Dream Job" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Find Your Dream Job
@@ -36,47 +45,14 @@ export default function JobsPage() {
             </p>
           </div>
 
-          {/* Search Section */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <Card className="shadow-medium">
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                  <div className="relative">
-                    <Icons.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      placeholder="Job title, keywords..."
-                      className="pl-10"
-                    />
-                  </div>
-                  <div className="relative">
-                    <Icons.MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      placeholder="Location"
-                      className="pl-10"
-                    />
-                  </div>
-                  <select className="w-full px-3 py-2 border border-input rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary">
-                    <option value="">All Categories</option>
-                    <option value="technology">Technology</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="finance">Finance</option>
-                    <option value="healthcare">Healthcare</option>
-                    <option value="education">Education</option>
-                  </select>
-                </div>
-                <div className="flex gap-4">
-                  <Button className="flex-1 bg-primary hover:bg-primary/90">
-                    <Icons.Search className="h-4 w-4 mr-2" />
-                    Search Jobs
-                  </Button>
-                  <Button variant="outline">
-                    <Icons.Filter className="h-4 w-4 mr-2" />
-                    Filters
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Filter Panel */}
+          <FilterPanel
+            filters={filters}
+            onFiltersChange={updateFilters}
+            onReset={resetFilters}
+            type="jobs"
+            resultsCount={resultsCount}
+          />
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
@@ -134,24 +110,35 @@ export default function JobsPage() {
             </div>
           </div>
 
-          {/* Featured Jobs */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Featured Jobs</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(jobListItems || []).map((job, index) => (
-                <Card key={job?.id || index} className="hover:shadow-medium transition-shadow cursor-pointer">
+          {/* Results Header */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-2">
+              {resultsCount} {resultsCount === 1 ? 'Job' : 'Jobs'} Available
+            </h2>
+            {resultsCount === 0 && (
+              <p className="text-muted-foreground">
+                No jobs found matching your criteria. Try adjusting your filters.
+              </p>
+            )}
+          </div>
+
+          {/* Jobs List */}
+          {resultsCount > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {filteredItems.map((job) => (
+                <Card key={job.id} className="hover:shadow-medium transition-shadow cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl">
-                          {job?.logo || '🏢'}
+                          {job.logo}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground">{job?.title || 'Job Title'}</h3>
-                          <p className="text-sm text-muted-foreground">{job?.company || 'Company'}</p>
+                          <h3 className="font-semibold text-foreground">{job.title}</h3>
+                          <p className="text-sm text-muted-foreground">{job.company}</p>
                         </div>
                       </div>
-                      {job?.featured && (
+                      {job.featured && (
                         <Badge variant="secondary" className="bg-primary/10 text-primary">
                           Featured
                         </Badge>
@@ -161,30 +148,30 @@ export default function JobsPage() {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.MapPin className="h-4 w-4 mr-2" />
-                        {job?.location || 'Location'}
+                        {job.location}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Icons.Briefcase className="h-4 w-4 mr-2" />
-                        {job?.type || 'Job Type'}
+                        {job.type}
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground">
                         <span className="h-4 w-4 mr-2">$</span>
-                        {job?.salary || 'Salary'}
+                        {job.salary}
                       </div>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {(job?.skills || []).slice(0, 4).map((skill, skillIndex) => (
+                      {job.skills.slice(0, 4).map((skill, skillIndex) => (
                         <Badge key={`${skill}-${skillIndex}`} variant="outline" className="text-xs">
-                          {skill || 'Skill'}
+                          {skill}
                         </Badge>
                       ))}
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">{job?.posted || 'Recently'}</span>
+                      <span className="text-xs text-muted-foreground">{job.posted}</span>
                       <Button size="sm" asChild>
-                        <Link href={`/jobs/${job?.id || ''}`}>
+                        <Link href={`/jobs/${job.id}`}>
                           Apply Now
                         </Link>
                       </Button>
@@ -193,7 +180,7 @@ export default function JobsPage() {
                 </Card>
               ))}
             </div>
-          </div>
+          )}
 
           {/* Job Categories */}
           <div>
@@ -220,11 +207,11 @@ export default function JobsPage() {
               ].map((category, index) => (
                 <Card key={`category-${index}`} className="hover:shadow-soft transition-shadow cursor-pointer group">
                   <CardContent className="p-6 text-center">
-                    <div className={`w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform flex items-center justify-center rounded-full border-2 border-dashed ${category?.bgClass || 'bg-gray-50'} ${category?.borderClass || 'border-gray-300'}`}>
-                      <span className="text-2xl">{category?.icon || '📂'}</span>
+                    <div className={`w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform flex items-center justify-center rounded-full border-2 border-dashed ${category.bgClass} ${category.borderClass}`}>
+                      <span className="text-2xl">{category.icon}</span>
                     </div>
-                    <h3 className="font-medium text-foreground mb-1">{category?.name || 'Category'}</h3>
-                    <p className="text-sm text-muted-foreground">{category?.jobs || 0} jobs</p>
+                    <h3 className="font-medium text-foreground mb-1">{category.name}</h3>
+                    <p className="text-sm text-muted-foreground">{category.jobs} jobs</p>
                   </CardContent>
                 </Card>
               ))}
