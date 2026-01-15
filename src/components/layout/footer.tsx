@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import CustomLink from '@/components/ui/custom-link';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -50,18 +50,18 @@ const Footer = () => {
               Connecting talented students and freshers with their dream companies.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <CustomLink href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Icons.Facebook className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              </CustomLink>
+              <CustomLink href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Icons.Twitter className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              </CustomLink>
+              <CustomLink href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Icons.Linkedin className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              </CustomLink>
+              <CustomLink href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Icons.Instagram className="h-5 w-5" />
-              </Link>
+              </CustomLink>
             </div>
           </div>
 
@@ -70,23 +70,23 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/jobs" className="text-muted-foreground hover:text-primary transition-colors">
+                <CustomLink href="/jobs" className="text-muted-foreground hover:text-primary transition-colors">
                   Find Jobs
-                </Link>
+                </CustomLink>
               </li>
               <li>
-                <Link 
+                <CustomLink 
                   href="/#top-companies" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                   onClick={handleTopCompaniesClick}
                 >
                   Top Companies
-                </Link>
+                </CustomLink>
               </li>
               <li>
-                <Link href="/internships" className="text-muted-foreground hover:text-primary transition-colors">
+                <CustomLink href="/internships" className="text-muted-foreground hover:text-primary transition-colors">
                   Internships
-                </Link>
+                </CustomLink>
               </li>
             </ul>
           </div>
@@ -96,28 +96,28 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground">Support</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
+                <CustomLink 
                   href="/about#get-in-touch" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                   onClick={handleContactUsClick}
                 >
                   Contact Us
-                </Link>
+                </CustomLink>
               </li>
               <li>
-                <Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                <CustomLink href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
                   Privacy Policy
-                </Link>
+                </CustomLink>
               </li>
               <li>
-                <Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors">
+                <CustomLink href="/terms" className="text-muted-foreground hover:text-primary transition-colors">
                   Terms of Service
-                </Link>
+                </CustomLink>
               </li>
               <li>
-                <Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors">
+                <CustomLink href="/faq" className="text-muted-foreground hover:text-primary transition-colors">
                   FAQ
-                </Link>
+                </CustomLink>
               </li>
             </ul>
           </div>

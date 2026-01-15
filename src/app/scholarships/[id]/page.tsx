@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,6 +5,7 @@ import { Icons } from '@/components/ui/icons';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { getScholarshipById } from '@/lib/scholarship-data';
+import Link from 'next/link';
 
 interface ScholarshipPageProps {
   params: Promise<{ id: string }>;
@@ -16,7 +16,30 @@ export default async function ScholarshipPage({ params }: ScholarshipPageProps) 
   const scholarship = await getScholarshipById(id);
 
   if (!scholarship) {
-    notFound();
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
+            <div className="text-center">
+              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-muted flex items-center justify-center">
+                <Icons.Award className="h-12 w-12 text-muted-foreground" />
+              </div>
+              <h1 className="text-4xl font-bold text-foreground mb-4">Scholarship Not Found</h1>
+              <p className="text-lg text-muted-foreground mb-8">
+                The scholarship you're looking for doesn't exist or has been removed.
+              </p>
+              <Link href="/scholarships">
+                <Button className="bg-primary hover:bg-primary/90">
+                  Browse All Scholarships
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
   }
 
   return (

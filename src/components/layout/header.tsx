@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import CustomLink from '@/components/ui/custom-link';
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,30 +32,30 @@ const Header = () => {
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
+          <CustomLink href="/" className="flex items-center space-x-2 group">
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 animate-gentle-rock">
               <Icons.Briefcase className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">JobsForCareer</span>
-          </Link>
+          </CustomLink>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/jobs" className="text-foreground hover:text-primary transition-colors font-medium">
+            <CustomLink href="/jobs" className="text-foreground hover:text-primary transition-colors font-medium">
               Jobs
-            </Link>
-            <Link href="/internships" className="text-foreground hover:text-primary transition-colors font-medium">
+            </CustomLink>
+            <CustomLink href="/internships" className="text-foreground hover:text-primary transition-colors font-medium">
               Internships
-            </Link>
-            <Link href="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium">
+            </CustomLink>
+            <CustomLink href="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium">
               Scholarships
-            </Link>
-            <Link href="/govt-jobs" className="text-foreground hover:text-primary transition-colors font-medium">
+            </CustomLink>
+            <CustomLink href="/govt-jobs" className="text-foreground hover:text-primary transition-colors font-medium">
               Govt. Jobs
-            </Link>
-            <Link href="/about" className="text-foreground hover:text-primary transition-colors font-medium">
+            </CustomLink>
+            <CustomLink href="/about" className="text-foreground hover:text-primary transition-colors font-medium">
               About
-            </Link>
+            </CustomLink>
           </nav>
 
           {/* Desktop Search */}
@@ -92,41 +92,41 @@ const Header = () => {
             </div>
             
             <nav className="space-y-2">
-              <Link 
+              <CustomLink 
                 href="/jobs" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Jobs
-              </Link>
-              <Link 
+              </CustomLink>
+              <CustomLink 
                 href="/internships" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Internships
-              </Link>
-              <Link 
+              </CustomLink>
+              <CustomLink 
                 href="/scholarships" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Scholarships
-              </Link>
-              <Link 
+              </CustomLink>
+              <CustomLink 
                 href="/govt-jobs" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Govt. Jobs
-              </Link>
-              <Link 
+              </CustomLink>
+              <CustomLink 
                 href="/about" 
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
-              </Link>
+              </CustomLink>
             </nav>
           </div>
         )}
