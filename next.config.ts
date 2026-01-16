@@ -9,8 +9,6 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: false,
   },
 
-
-  
   // Cache optimization (only for production)
   ...(process.env.NODE_ENV === 'production' && {
     async headers() {
