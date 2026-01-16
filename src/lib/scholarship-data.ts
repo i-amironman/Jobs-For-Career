@@ -405,7 +405,7 @@ export interface ScholarshipListItem {
   field: string;
   company?: string;
   type?: string;
-  skills?: string[];
+  skills: string[];
   posted?: string;
 }
 

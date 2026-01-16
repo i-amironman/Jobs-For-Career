@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-
   // Cache optimization (only for production)
   ...(process.env.NODE_ENV === 'production' && {
     async headers() {
