@@ -65,7 +65,7 @@ export default function JobsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={15000} suffix="+" duration={2000} />
+                <AnimatedNumber end={15000} suffix="+" duration={2000} startOnView={true} />
               </div>
               <div className="text-sm text-muted-foreground">Active Jobs</div>
             </div>
@@ -78,7 +78,7 @@ export default function JobsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={800} suffix="+" duration={2000} />
+                <AnimatedNumber end={800} suffix="+" duration={2000} startOnView={true} />
               </div>
               <div className="text-sm text-muted-foreground">Companies</div>
             </div>
@@ -91,7 +91,7 @@ export default function JobsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={75000} suffix="+" duration={2000} />
+                <AnimatedNumber end={75000} suffix="+" duration={2000} startOnView={true} />
               </div>
               <div className="text-sm text-muted-foreground">Job Seekers</div>
             </div>
@@ -104,7 +104,7 @@ export default function JobsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={92} suffix="%" duration={2000} />
+                <AnimatedNumber end={92} suffix="%" duration={2000} startOnView={true} />
               </div>
               <div className="text-sm text-muted-foreground">Success Rate</div>
             </div>

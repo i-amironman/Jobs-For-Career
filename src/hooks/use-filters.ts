@@ -37,22 +37,26 @@ export const useFilters = <T extends FilterableItem>(
   items: T[],
   type: 'jobs' | 'internships' | 'scholarships' | 'govt-jobs'
 ) => {
-  // Initialize filters with URL parameters if available
-  const getInitialFilters = (): FilterOptions => {
-    const defaultFilters = {
-      search: '',
-      location: '',
-      type: '',
-      category: '',
-      salary: '',
-      duration: '',
-      stipend: '',
-      field: '',
-      amount: '',
-      department: ''
-    };
-    
+  // Initialize filters with default values
+  const defaultFilters = {
+    search: '',
+    location: '',
+    type: '',
+    category: '',
+    salary: '',
+    duration: '',
+    stipend: '',
+    field: '',
+    amount: '',
+    department: ''
+  };
+
+  const [filters, setFilters] = useState<FilterOptions>(defaultFilters);
+
+  // Load URL parameters on mount and when filters change
+  useEffect(() => {
     if (typeof window !== 'undefined') {
+      // Load URL parameters on mount
       const urlParams = new URLSearchParams(window.location.search);
       const urlFilters: Partial<FilterOptions> = {};
       
@@ -62,13 +66,11 @@ export const useFilters = <T extends FilterableItem>(
         }
       });
       
-      return { ...defaultFilters, ...urlFilters };
+      if (Object.keys(urlFilters).length > 0) {
+        setFilters({ ...defaultFilters, ...urlFilters });
+      }
     }
-    
-    return defaultFilters;
-  };
-
-  const [filters, setFilters] = useState<FilterOptions>(getInitialFilters);
+  }, []);
 
   // Update URL when filters change
   useEffect(() => {
@@ -88,7 +90,7 @@ export const useFilters = <T extends FilterableItem>(
 
   // Filter logic
   const filteredItems = useMemo(() => {
-    const result = items.filter((item) => {
+    return items.filter((item) => {
       // Search filter
       if (filters.search && filters.search.trim() !== '') {
         const searchLower = filters.search.toLowerCase().trim();
@@ -239,28 +241,14 @@ export const useFilters = <T extends FilterableItem>(
 
       return true;
     });
-    console.log('Filtered items count:', result.length); // Debug log
-    return result;
   }, [items, filters, type]);
 
   const updateFilters = (newFilters: FilterOptions) => {
-    console.log('Updating filters:', newFilters); // Debug log
     setFilters(newFilters);
   };
 
   const resetFilters = () => {
-    setFilters({
-      search: '',
-      location: '',
-      type: '',
-      category: '',
-      salary: '',
-      duration: '',
-      stipend: '',
-      field: '',
-      amount: '',
-      department: ''
-    });
+    setFilters(defaultFilters);
   };
 
   const hasActiveFilters = useMemo(() => {
