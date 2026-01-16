@@ -170,10 +170,8 @@ export default function JobsPage() {
 
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-muted-foreground">{job.posted}</span>
-                      <Button size="sm" asChild>
-                        <Link href={`/jobs/${job.id}`}>
-                          Apply Now
-                        </Link>
+                      <Button size="sm" onClick={() => window.location.href = `/jobs/${job.id}`}>
+                        Apply Now
                       </Button>
                     </div>
                   </CardContent>

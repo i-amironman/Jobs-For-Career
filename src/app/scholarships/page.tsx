@@ -168,10 +168,8 @@ export default function ScholarshipsPage() {
 
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-muted-foreground">Apply before {scholarship.deadline}</span>
-                      <Button size="sm" asChild>
-                        <Link href={`/scholarships/${scholarship.id}`}>
-                          Apply Now
-                        </Link>
+                      <Button size="sm" onClick={() => window.location.href = `/scholarships/${scholarship.id}`}>
+                        Apply Now
                       </Button>
                     </div>
                   </CardContent>
