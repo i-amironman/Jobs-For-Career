@@ -9,6 +9,10 @@ import { Icons } from '@/components/ui/icons';
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+
+
+
+  
   const testimonials = [
     {
       id: 1,
