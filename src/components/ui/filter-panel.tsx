@@ -120,6 +120,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   ];
 
   const handleFilterChange = (key: keyof FilterOptions, value: string) => {
+    console.log('Filter change:', key, value); // Debug log
     onFiltersChange({
       ...filters,
       [key]: value

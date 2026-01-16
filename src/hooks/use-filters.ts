@@ -37,34 +37,38 @@ export const useFilters = <T extends FilterableItem>(
   items: T[],
   type: 'jobs' | 'internships' | 'scholarships' | 'govt-jobs'
 ) => {
-  const [filters, setFilters] = useState<FilterOptions>({
-    search: '',
-    location: '',
-    type: '',
-    category: '',
-    salary: '',
-    duration: '',
-    stipend: '',
-    field: '',
-    amount: '',
-    department: ''
-  });
-
-  // Load filters from URL on mount
-  useEffect(() => {
+  // Initialize filters with URL parameters if available
+  const getInitialFilters = (): FilterOptions => {
+    const defaultFilters = {
+      search: '',
+      location: '',
+      type: '',
+      category: '',
+      salary: '',
+      duration: '',
+      stipend: '',
+      field: '',
+      amount: '',
+      department: ''
+    };
+    
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
       const urlFilters: Partial<FilterOptions> = {};
       
       urlParams.forEach((value, key) => {
-        if (key in filters) {
+        if (key in defaultFilters) {
           urlFilters[key as keyof FilterOptions] = value;
         }
       });
       
-      setFilters(prev => ({ ...prev, ...urlFilters }));
+      return { ...defaultFilters, ...urlFilters };
     }
-  }, []);
+    
+    return defaultFilters;
+  };
+
+  const [filters, setFilters] = useState<FilterOptions>(getInitialFilters);
 
   // Update URL when filters change
   useEffect(() => {
@@ -84,10 +88,10 @@ export const useFilters = <T extends FilterableItem>(
 
   // Filter logic
   const filteredItems = useMemo(() => {
-    return items.filter((item) => {
+    const result = items.filter((item) => {
       // Search filter
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase();
+      if (filters.search && filters.search.trim() !== '') {
+        const searchLower = filters.search.toLowerCase().trim();
         const companyName = item.company || item.agency || '';
         const matchesSearch = 
           item.title.toLowerCase().includes(searchLower) ||
@@ -98,110 +102,149 @@ export const useFilters = <T extends FilterableItem>(
       }
 
       // Location filter
-      if (filters.location && item.location !== filters.location) {
-        return false;
+      if (filters.location && filters.location.trim() !== '') {
+        if (item.location !== filters.location) {
+          return false;
+        }
       }
 
       // Type filter
-      if (filters.type && item.type && item.type !== filters.type) {
-        return false;
+      if (filters.type && filters.type.trim() !== '') {
+        if (item.type !== filters.type) {
+          return false;
+        }
       }
 
       // Category filter (jobs)
-      if (type === 'jobs' && filters.category) {
-        // This would need to be implemented based on your data structure
-        // For now, we'll use a simple keyword match in title/description
-        if (!item.title.toLowerCase().includes(filters.category.toLowerCase())) {
+      if (type === 'jobs' && filters.category && filters.category.trim() !== '') {
+        // Use a more flexible matching for category
+        const categoryLower = filters.category.toLowerCase();
+        const titleLower = item.title.toLowerCase();
+        const skillsLower = item.skills.join(' ').toLowerCase();
+        
+        if (!titleLower.includes(categoryLower) && !skillsLower.includes(categoryLower)) {
           return false;
         }
       }
 
       // Salary filter (jobs, govt-jobs)
-      if ((type === 'jobs' || type === 'govt-jobs') && filters.salary && item.salary) {
+      if ((type === 'jobs' || type === 'govt-jobs') && filters.salary && filters.salary.trim() !== '' && item.salary) {
         const salaryRange = filters.salary;
-        const itemSalary = item.salary;
+        const itemSalary = item.salary.toLowerCase();
         
-        if (salaryRange === '$0-50k' && !itemSalary.includes('0-50') && !itemSalary.includes('30-50') && !itemSalary.includes('40-50')) {
-          return false;
-        }
-        if (salaryRange === '$50-75k' && !itemSalary.includes('50-75') && !itemSalary.includes('60-70')) {
-          return false;
-        }
-        if (salaryRange === '$75-100k' && !itemSalary.includes('75-100') && !itemSalary.includes('80-90')) {
-          return false;
-        }
-        if (salaryRange === '$100-150k' && !itemSalary.includes('100-150') && !itemSalary.includes('120-150')) {
-          return false;
-        }
-        if (salaryRange === '$150k+' && !itemSalary.includes('150') && !itemSalary.includes('160') && !itemSalary.includes('180') && !itemSalary.includes('200')) {
-          return false;
+        // Extract numbers from salary string for better matching
+        const salaryNumbers = itemSalary.match(/\d+/g);
+        if (salaryNumbers) {
+          const maxSalary = Math.max(...salaryNumbers.map(Number));
+          
+          if (salaryRange === '$0-50k' && maxSalary > 50) {
+            return false;
+          }
+          if (salaryRange === '$50-75k' && (maxSalary < 50 || maxSalary > 75)) {
+            return false;
+          }
+          if (salaryRange === '$75-100k' && (maxSalary < 75 || maxSalary > 100)) {
+            return false;
+          }
+          if (salaryRange === '$100-150k' && (maxSalary < 100 || maxSalary > 150)) {
+            return false;
+          }
+          if (salaryRange === '$150k+' && maxSalary < 150) {
+            return false;
+          }
         }
       }
 
       // Duration filter (internships)
-      if (type === 'internships' && filters.duration && item.duration) {
-        if (!item.duration.includes(filters.duration)) {
+      if (type === 'internships' && filters.duration && filters.duration.trim() !== '' && item.duration) {
+        const durationFilter = filters.duration.toLowerCase();
+        const itemDuration = item.duration.toLowerCase();
+        
+        if (!itemDuration.includes(durationFilter)) {
           return false;
         }
       }
 
       // Stipend filter (internships)
-      if (type === 'internships' && filters.stipend && item.stipend) {
+      if (type === 'internships' && filters.stipend && filters.stipend.trim() !== '' && item.stipend) {
         const stipendRange = filters.stipend;
-        const itemStipend = item.stipend;
+        const itemStipend = item.stipend.toLowerCase();
         
-        if (stipendRange === '$0-1000/month' && !itemStipend.includes('500') && !itemStipend.includes('800') && !itemStipend.includes('1000')) {
-          return false;
-        }
-        if (stipendRange === '$1000-2000/month' && !itemStipend.includes('1500') && !itemStipend.includes('1800') && !itemStipend.includes('2000')) {
-          return false;
-        }
-        if (stipendRange === '$2000-3000/month' && !itemStipend.includes('2500') && !itemStipend.includes('3000')) {
-          return false;
-        }
-        if (stipendRange === '$3000+/month' && !itemStipend.includes('3000') && !itemStipend.includes('3500') && !itemStipend.includes('4000')) {
-          return false;
+        // Extract numbers from stipend string
+        const stipendNumbers = itemStipend.match(/\d+/g);
+        if (stipendNumbers) {
+          const maxStipend = Math.max(...stipendNumbers.map(Number));
+          
+          if (stipendRange === '$0-1000/month' && maxStipend > 1000) {
+            return false;
+          }
+          if (stipendRange === '$1000-2000/month' && (maxStipend < 1000 || maxStipend > 2000)) {
+            return false;
+          }
+          if (stipendRange === '$2000-3000/month' && (maxStipend < 2000 || maxStipend > 3000)) {
+            return false;
+          }
+          if (stipendRange === '$3000+/month' && maxStipend < 3000) {
+            return false;
+          }
         }
       }
 
       // Field filter (scholarships)
-      if (type === 'scholarships' && filters.field) {
-        if (!item.title.toLowerCase().includes(filters.field.toLowerCase())) {
+      if (type === 'scholarships' && filters.field && filters.field.trim() !== '') {
+        const fieldLower = filters.field.toLowerCase();
+        const titleLower = item.title.toLowerCase();
+        const skillsLower = item.skills.join(' ').toLowerCase();
+        
+        if (!titleLower.includes(fieldLower) && !skillsLower.includes(fieldLower)) {
           return false;
         }
       }
 
       // Amount filter (scholarships)
-      if (type === 'scholarships' && filters.amount && item.amount) {
+      if (type === 'scholarships' && filters.amount && filters.amount.trim() !== '' && item.amount) {
         const amountRange = filters.amount;
-        const itemAmount = item.amount;
+        const itemAmount = item.amount.toLowerCase();
         
-        if (amountRange === '$0-1000' && !itemAmount.includes('500') && !itemAmount.includes('1000')) {
-          return false;
-        }
-        if (amountRange === '$1000-5000' && !itemAmount.includes('2000') && !itemAmount.includes('3000') && !itemAmount.includes('5000')) {
-          return false;
-        }
-        if (amountRange === '$5000-10000' && !itemAmount.includes('8000') && !itemAmount.includes('10000')) {
-          return false;
-        }
-        if (amountRange === '$10000+' && !itemAmount.includes('15000') && !itemAmount.includes('20000') && !itemAmount.includes('25000')) {
-          return false;
+        // Extract numbers from amount string
+        const amountNumbers = itemAmount.match(/\d+/g);
+        if (amountNumbers) {
+          const maxAmount = Math.max(...amountNumbers.map(Number));
+          
+          if (amountRange === '$0-1000' && maxAmount > 1000) {
+            return false;
+          }
+          if (amountRange === '$1000-5000' && (maxAmount < 1000 || maxAmount > 5000)) {
+            return false;
+          }
+          if (amountRange === '$5000-10000' && (maxAmount < 5000 || maxAmount > 10000)) {
+            return false;
+          }
+          if (amountRange === '$10000+' && maxAmount < 10000) {
+            return false;
+          }
         }
       }
 
       // Department filter (govt-jobs)
-      if (type === 'govt-jobs' && filters.department) {
-        if (!item.title.toLowerCase().includes(filters.department.toLowerCase())) {
+      if (type === 'govt-jobs' && filters.department && filters.department.trim() !== '') {
+        const departmentLower = filters.department.toLowerCase();
+        const titleLower = item.title.toLowerCase();
+        const skillsLower = item.skills.join(' ').toLowerCase();
+        
+        if (!titleLower.includes(departmentLower) && !skillsLower.includes(departmentLower)) {
           return false;
         }
       }
 
       return true;
     });
+    console.log('Filtered items count:', result.length); // Debug log
+    return result;
   }, [items, filters, type]);
 
   const updateFilters = (newFilters: FilterOptions) => {
+    console.log('Updating filters:', newFilters); // Debug log
     setFilters(newFilters);
   };
 
