@@ -65,7 +65,7 @@ export default function ScholarshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={3500} suffix="+" duration={2000} />
+                <AnimatedNumber end={3500} suffix="+" duration={2000} startOnView={false} />
               </div>
               <div className="text-sm text-muted-foreground">Active Scholarships</div>
             </div>
@@ -78,7 +78,7 @@ export default function ScholarshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={250} suffix="+" duration={2000} />
+                <AnimatedNumber end={250} suffix="+" duration={2000} startOnView={false} />
               </div>
               <div className="text-sm text-muted-foreground">Providers</div>
             </div>
@@ -91,7 +91,7 @@ export default function ScholarshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={50000} suffix="+" duration={2000} />
+                <AnimatedNumber end={50000} suffix="+" duration={2000} startOnView={false} />
               </div>
               <div className="text-sm text-muted-foreground">Students Helped</div>
             </div>
@@ -104,7 +104,7 @@ export default function ScholarshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={85} suffix="%" duration={2000} />
+                <AnimatedNumber end={85} suffix="%" duration={2000} startOnView={false} />
               </div>
               <div className="text-sm text-muted-foreground">Success Rate</div>
             </div>

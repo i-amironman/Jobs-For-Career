@@ -71,25 +71,25 @@ export default function GovtJobsPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-2">
-                  <AnimatedNumber end={1200} suffix="+" duration={2000} />
+                  <AnimatedNumber end={1200} suffix="+" duration={2000} startOnView={false} />
                 </div>
                 <div className="text-sm text-muted-foreground">Active Jobs</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-2">
-                  <AnimatedNumber end={85} suffix="%" duration={2000} />
+                  <AnimatedNumber end={85} suffix="%" duration={2000} startOnView={false} />
                 </div>
                 <div className="text-sm text-muted-foreground">Job Security</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-2">
-                  <AnimatedNumber end={25} suffix="+" duration={2000} />
+                  <AnimatedNumber end={25} suffix="+" duration={2000} startOnView={false} />
                 </div>
                 <div className="text-sm text-muted-foreground">Departments</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-2">
-                  <AnimatedNumber end={60} suffix="k" duration={2000} />
+                  <AnimatedNumber end={60} suffix="k" duration={2000} startOnView={false} />
                 </div>
                 <div className="text-sm text-muted-foreground">Employees</div>
               </div>

@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/ui/icons';
+import { AnimatedNumber } from '@/components/ui/animated-number';
 
 const FeaturesSection = () => {
   const features = [
@@ -40,10 +41,10 @@ const FeaturesSection = () => {
   ];
 
   const stats = [
-    { value: '95%', label: 'Success Rate' },
-    { value: '48hrs', label: 'Avg. Response Time' },
-    { value: '1000+', label: 'Daily New Jobs' },
-    { value: '4.8/5', label: 'User Rating' },
+    { value: 95, label: 'Success Rate', suffix: '%' },
+    { value: 48, label: 'Avg. Response Time', suffix: 'hrs' },
+    { value: 1000, label: 'Daily New Jobs', suffix: '+' },
+    { value: 4.8, label: 'User Rating', suffix: '/5' },
   ];
 
   return (
@@ -64,7 +65,14 @@ const FeaturesSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {(stats || []).map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{stat?.value || ''}</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                <AnimatedNumber 
+                  end={stat.value} 
+                  suffix={stat.suffix} 
+                  duration={2000} 
+                  startOnView={false}
+                />
+              </div>
               <div className="text-sm text-muted-foreground">{stat?.label || ''}</div>
             </div>
           ))}

@@ -22,10 +22,11 @@ export function AnimatedNumber({
 }: AnimatedNumberProps) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(!startOnView);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || hasAnimated) return;
 
     const startTime = Date.now();
     const endTime = startTime + duration;
@@ -44,11 +45,12 @@ export function AnimatedNumber({
         requestAnimationFrame(updateCount);
       } else {
         setCount(end);
+        setHasAnimated(true);
       }
     };
 
     requestAnimationFrame(updateCount);
-  }, [end, duration, isVisible]);
+  }, [end, duration, isVisible, hasAnimated]);
 
   useEffect(() => {
     if (!startOnView) return;
@@ -56,7 +58,7 @@ export function AnimatedNumber({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasAnimated) {
             setIsVisible(true);
             observer.disconnect();
           }
@@ -70,7 +72,7 @@ export function AnimatedNumber({
     }
 
     return () => observer.disconnect();
-  }, [startOnView]);
+  }, [startOnView, hasAnimated]);
 
   return (
     <div ref={elementRef} className={cn('tabular-nums', className)}>

@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Icons } from '@/components/ui/icons';
+import { AnimatedNumber } from '@/components/ui/animated-number';
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,19 +73,27 @@ const HeroSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary mb-1">10,000+</div>
+                <div className="text-2xl font-bold text-primary mb-1">
+                  <AnimatedNumber end={10000} suffix="+" duration={2000} startOnView={false} />
+                </div>
                 <div className="text-sm text-muted-foreground">Active Jobs</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary mb-1">500+</div>
+                <div className="text-2xl font-bold text-primary mb-1">
+                  <AnimatedNumber end={500} suffix="+" duration={2000} startOnView={false} />
+                </div>
                 <div className="text-sm text-muted-foreground">Companies</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary mb-1">50,000+</div>
+                <div className="text-2xl font-bold text-primary mb-1">
+                  <AnimatedNumber end={50000} suffix="+" duration={2000} startOnView={false} />
+                </div>
                 <div className="text-sm text-muted-foreground">Students</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary mb-1">95%</div>
+                <div className="text-2xl font-bold text-primary mb-1">
+                  <AnimatedNumber end={95} suffix="%" duration={2000} startOnView={false} />
+                </div>
                 <div className="text-sm text-muted-foreground">Success Rate</div>
               </div>
             </div>
