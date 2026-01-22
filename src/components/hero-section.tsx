@@ -74,25 +74,25 @@ const HeroSection = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary mb-1">
-                  <AnimatedNumber end={10000} suffix="+" duration={2000} startOnView={false} />
+                  <AnimatedNumber end={10000} suffix="+" duration={2000} />
                 </div>
                 <div className="text-sm text-muted-foreground">Active Jobs</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary mb-1">
-                  <AnimatedNumber end={500} suffix="+" duration={2000} startOnView={false} />
+                  <AnimatedNumber end={500} suffix="+" duration={2000} />
                 </div>
                 <div className="text-sm text-muted-foreground">Companies</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary mb-1">
-                  <AnimatedNumber end={50000} suffix="+" duration={2000} startOnView={false} />
+                  <AnimatedNumber end={50000} suffix="+" duration={2000} />
                 </div>
                 <div className="text-sm text-muted-foreground">Students</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary mb-1">
-                  <AnimatedNumber end={95} suffix="%" duration={2000} startOnView={false} />
+                  <AnimatedNumber end={95} suffix="%" duration={2000} />
                 </div>
                 <div className="text-sm text-muted-foreground">Success Rate</div>
               </div>

@@ -66,7 +66,7 @@ export default function InternshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={5000} suffix="+" duration={2000} startOnView={false} />
+                <AnimatedNumber end={5000} suffix="+" duration={2000} />
               </div>
               <div className="text-sm text-muted-foreground">Active Internships</div>
             </div>
@@ -79,7 +79,7 @@ export default function InternshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={500} suffix="+" duration={2000} startOnView={false} />
+                <AnimatedNumber end={500} suffix="+" duration={2000} />
               </div>
               <div className="text-sm text-muted-foreground">Companies</div>
             </div>
@@ -92,7 +92,7 @@ export default function InternshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={25000} suffix="+" duration={2000} startOnView={false} />
+                <AnimatedNumber end={25000} suffix="+" duration={2000} />
               </div>
               <div className="text-sm text-muted-foreground">Students</div>
             </div>
@@ -105,7 +105,7 @@ export default function InternshipsPage() {
                 />
               </div>
               <div className="text-3xl font-bold text-primary mb-2">
-                <AnimatedNumber end={88} suffix="%" duration={2000} startOnView={false} />
+                <AnimatedNumber end={88} suffix="%" duration={2000} />
               </div>
               <div className="text-sm text-muted-foreground">Conversion Rate</div>
             </div>

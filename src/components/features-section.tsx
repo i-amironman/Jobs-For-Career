@@ -70,7 +70,6 @@ const FeaturesSection = () => {
                   end={stat.value} 
                   suffix={stat.suffix} 
                   duration={2000} 
-                  startOnView={false}
                 />
               </div>
               <div className="text-sm text-muted-foreground">{stat?.label || ''}</div>

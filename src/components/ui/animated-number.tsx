@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 
 interface AnimatedNumberProps {
   end: number;
@@ -9,7 +8,6 @@ interface AnimatedNumberProps {
   suffix?: string;
   prefix?: string;
   className?: string;
-  startOnView?: boolean;
 }
 
 export function AnimatedNumber({ 
@@ -17,21 +15,21 @@ export function AnimatedNumber({
   duration = 2000, 
   suffix = '', 
   prefix = '', 
-  className = '',
-  startOnView = true 
+  className = ''
 }: AnimatedNumberProps) {
   const [count, setCount] = useState(0);
-  const [isVisible, setIsVisible] = useState(!startOnView);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (!isVisible || hasAnimated) return;
+    setIsClient(true);
+  }, []);
 
+  useEffect(() => {
+    if (!isClient) return;
+    
+    console.log('🎯 AnimatedNumber effect triggered for end:', end);
     const startTime = Date.now();
-    const endTime = startTime + duration;
-
-    const updateCount = () => {
+    const animate = () => {
       const now = Date.now();
       const progress = Math.min((now - startTime) / duration, 1);
       
@@ -39,43 +37,28 @@ export function AnimatedNumber({
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       const currentCount = Math.floor(easeOutQuart * end);
       
+      console.log('📊 Animation progress:', progress, 'Current count:', currentCount);
       setCount(currentCount);
 
-      if (now < endTime) {
-        requestAnimationFrame(updateCount);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       } else {
         setCount(end);
-        setHasAnimated(true);
+        console.log('✅ Animation completed with final value:', end);
       }
     };
 
-    requestAnimationFrame(updateCount);
-  }, [end, duration, isVisible, hasAnimated]);
+    // Start animation immediately after component mounts
+    const timer = setTimeout(() => {
+      console.log('🚀 Starting animation after timeout');
+      requestAnimationFrame(animate);
+    }, 100);
 
-  useEffect(() => {
-    if (!startOnView) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [startOnView, hasAnimated]);
+    return () => clearTimeout(timer);
+  }, [end, duration, isClient]);
 
   return (
-    <div ref={elementRef} className={cn('tabular-nums', className)}>
+    <div className={className}>
       {prefix}{count.toLocaleString()}{suffix}
     </div>
   );
