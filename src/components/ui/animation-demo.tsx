@@ -2,10 +2,6 @@
 
 import React, { useState } from 'react';
 
-
-
-
-
 /**
  * Animation Demo Component
  * 
