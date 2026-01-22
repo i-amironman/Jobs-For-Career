@@ -10,6 +10,10 @@ interface ErrorBoundaryState {
   error?: Error;
 }
 
+
+
+
+
 interface ErrorBoundaryProps {
   children: React.ReactNode;
   fallback?: React.ReactNode;
