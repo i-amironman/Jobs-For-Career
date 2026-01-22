@@ -10,6 +10,9 @@ interface AnimatedNumberProps {
   className?: string;
 }
 
+
+
+
 export function AnimatedNumber({ 
   end, 
   duration = 2000, 
