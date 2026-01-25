@@ -9,6 +9,11 @@ import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
 
 
+
+
+
+
+
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState('');
