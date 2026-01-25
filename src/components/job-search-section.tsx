@@ -11,6 +11,10 @@ import { Icons } from '@/components/ui/icons';
 
 
 
+
+
+
+
 const JobSearchSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState('');
