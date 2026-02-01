@@ -7,6 +7,13 @@ import { Badge } from '@/components/ui/badge';
 import { Icons } from '@/components/ui/icons';
 
 
+
+
+
+
+
+
+
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
