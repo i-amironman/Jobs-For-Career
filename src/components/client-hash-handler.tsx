@@ -3,6 +3,19 @@
 import { useEffect } from 'react';
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default function ClientHashHandler() {
   useEffect(() => {
     // Handle hash navigation on page load
