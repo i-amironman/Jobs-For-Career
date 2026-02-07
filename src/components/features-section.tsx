@@ -6,6 +6,23 @@ import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/ui/icons';
 import { AnimatedNumber } from '@/components/ui/animated-number';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const FeaturesSection = () => {
   const features = [
     {
