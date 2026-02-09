@@ -7,6 +7,22 @@ import { Icons } from '@/components/ui/icons';
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
