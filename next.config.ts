@@ -2,11 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  // Enable strict mode for better development experience
   reactStrictMode: true,
-  // Remove TypeScript error ignoring for better type safety
   typescript: {
     ignoreBuildErrors: false,
+  },
+  async redirects() {
+    return [
+      { source: '/jobs/:id(\\d+)', destination: '/jobs', permanent: true },
+      { source: '/internships/:id(\\d+)', destination: '/internships', permanent: true },
+      { source: '/scholarships/:id(\\d+)', destination: '/scholarships', permanent: true },
+      { source: '/govt-jobs/:id(\\d+)', destination: '/govt-jobs', permanent: true },
+    ];
   },
   // Cache optimization (only for production)
   ...(process.env.NODE_ENV === 'production' && {

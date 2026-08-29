@@ -24,7 +24,11 @@ function setupProject() {
   
   // Update .env file
   const envPath = path.join(__dirname, '..', '.env');
-  const envContent = 'MONGODB_URI=mongodb://localhost:27017/jobsforcareer\n';
+  const envContent = `MONGODB_URI=mongodb://localhost:27017/jobsforcareer
+ADMIN_PASSWORD=admin123
+NEXT_PUBLIC_DEFAULT_COUNTRY=IN
+NEXT_PUBLIC_BASE_URL=https://jobsforcareer.com
+`;
   
   try {
     fs.writeFileSync(envPath, envContent);

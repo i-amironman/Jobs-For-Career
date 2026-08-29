@@ -123,7 +123,11 @@ export default function PrivacyPolicy() {
                       </li>
                       <li className="flex items-start gap-2">
                         <Icons.Globe className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                        <span><strong>Cookies and Tracking:</strong> Session cookies and analytics cookies</span>
+                        <span><strong>Cookies and Tracking:</strong> Session cookies, analytics cookies, and advertising cookies (including Google AdSense)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Icons.Globe className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                        <span><strong>Google AdSense:</strong> Third-party vendors, including Google, use cookies to serve ads based on your prior visits. You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" className="text-primary underline" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>.</span>
                       </li>
                     </ul>
                   </div>

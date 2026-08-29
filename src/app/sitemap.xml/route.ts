@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { generateSitemap } from '@/lib/sitemap-generator';
 
-export function GET() {
-  const sitemap = generateSitemap();
+export async function GET() {
+  const sitemap = await generateSitemap();
   
   return new NextResponse(sitemap, {
     status: 200,
